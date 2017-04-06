@@ -1,6 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
+    <servlet>
+        <servlet-name>AuthServlet</servlet-name>
+        <servlet-class>sh.controller.AuthentificationController</servlet-class>
+    </servlet>
+
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>sh.filter.AuthFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>AdminEditFilter</filter-name>
+        <filter-class>sh.filter.AdminEditFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>AdminReadFilter</filter-name>
+        <filter-class>sh.filter.AdminReadFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>ReadCreateAdminProfessorFilter</filter-name>
+        <filter-class>sh.filter.ReadCreateAdminProfessorFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ReadCreateAdminProfessorFilter</filter-name>
+        <servlet-name>MarkController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminReadFilter</filter-name>
+        <servlet-name>UsersListController</servlet-name>
+        <servlet-name>UserController</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminEditFilter</filter-name>
+        <servlet-name>GroupController</servlet-name>
+        <servlet-name>StudentFormController</servlet-name>
+        <servlet-name>ProfessorFormServlet</servlet-name>
+        <servlet-name>StudyController</servlet-name>
+        <servlet-name>UserController</servlet-name>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>StudentsController</servlet-name>
+        <servlet-class>sh.controller.StudentsController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>StudentsController</servlet-name>
+        <url-pattern>/students</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ChooseActionController</servlet-name>
+        <servlet-class>sh.controller.ChooseActionController</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>StudentFormController</servlet-name>
+        <servlet-class>sh.controller.StudentFormController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProfessorFormServlet</servlet-name>
+        <servlet-class>sh.controller.ProfessorFormServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProfessorsController</servlet-name>
+        <servlet-class>sh.controller.ProfessorsController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GroupController</servlet-name>
+        <servlet-class>sh.controller.GroupController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GroupListController</servlet-name>
+        <servlet-class>sh.controller.GroupListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MarkController</servlet-name>
+        <servlet-class>sh.controller.MarkController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MarkListController</servlet-name>
+        <servlet-class>sh.controller.MarkListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StudyController</servlet-name>
+        <servlet-class>sh.controller.StudyController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StudyListController</servlet-name>
+        <servlet-class>StudyListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UsersListController</servlet-name>
+        <servlet-class>UsersController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserController</servlet-name>
+        <servlet-class>UserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserController</servlet-name>
+        <url-pattern>/user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsersListController</servlet-name>
+        <url-pattern>/users</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudyListController</servlet-name>
+        <url-pattern>/studies</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudyController</servlet-name>
+        <url-pattern>/study</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MarkListController</servlet-name>
+        <url-pattern>/marks</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MarkController</servlet-name>
+        <url-pattern>/mark</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GroupListController</servlet-name>
+        <url-pattern>/groups</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GroupController</servlet-name>
+        <url-pattern>/group</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfessorsController</servlet-name>
+        <url-pattern>/professors</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfessorFormServlet</servlet-name>
+        <url-pattern>/professor</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>StudentFormController</servlet-name>
+        <url-pattern>/student</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ChooseActionController</servlet-name>
+        <url-pattern>/choose-action</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AuthServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <welcome-file-list>
+        <welcome-file>/index.jsp</welcome-file>
+    </welcome-file-list>
+
+
 </web-app>
