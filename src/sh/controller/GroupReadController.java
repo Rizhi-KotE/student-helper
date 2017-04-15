@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static sh.dao.DaoFactory.DaoType.DB2;
 
-public class GroupController extends HttpServlet {
+public class GroupReadController extends HttpServlet {
     private final GroupDao dao = DaoFactory.createGroupDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,21 +38,5 @@ public class GroupController extends HttpServlet {
         } catch (DAOException e) {
             throw new ServletException(e);
         }
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Group group = Group.parseRequest(request);
-        String oldNumber = request.getParameter("oldNumber");
-        try {
-
-            group = dao.saveOrUpdate(oldNumber, group);
-            request.setAttribute("message", "success");
-        } catch (DAOException e) {
-            request.setAttribute("message", "fail");
-        }
-        request.setAttribute("message", "All right");
-        request.setAttribute("group", group);
-        request.setAttribute("action", "edit");
-        request.getRequestDispatcher("WEB-INF/jsp/group-form.jsp").forward(request, response);
     }
 }

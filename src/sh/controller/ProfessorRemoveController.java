@@ -2,7 +2,8 @@ package sh.controller;
 
 import sh.dao.DaoFactory;
 import sh.dao.Exception.DAOException;
-import sh.dao.GroupDao;
+import sh.dao.MarksDao;
+import sh.dao.ProfessorDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,19 +13,19 @@ import java.io.IOException;
 
 import static sh.dao.DaoFactory.DaoType.DB2;
 
-public class GroupRemoveController extends HttpServlet {
+public class ProfessorRemoveController extends HttpServlet {
 
-    GroupDao dao = DaoFactory.createGroupDao(DB2);
+    ProfessorDao dao = DaoFactory.createProfessorDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String groupNumber = request.getParameter("groupNumber");
+        long id = Long.parseLong(request.getParameter("id"));
         try {
-            dao.remove(groupNumber);
+            dao.remove(id);
             request.setAttribute("message", "success");
-            response.sendRedirect("/group/list");
+            response.sendRedirect("/professor/list");
         } catch (DAOException e) {
             request.setAttribute("message", "fail");
-            request.getRequestDispatcher("/WEB-INF/jsp/group-form.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/professor-form.jsp").forward(request, response);
         }
     }
 }

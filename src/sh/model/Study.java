@@ -1,11 +1,26 @@
 package sh.model;
 
+import javax.servlet.http.HttpServletRequest;
+
+import static java.lang.Double.parseDouble;
+import static java.lang.Long.parseLong;
+
 public class Study {
     private long id;
     private String name;
     private double hours;
     private long professorId;
     private double avgMark;
+
+    public static Study parseRequest(HttpServletRequest request) {
+        Study study = new Study();
+        study.setId(parseLong(request.getParameter("id")));
+        study.setName(request.getParameter("name"));
+        study.setHours(parseDouble(request.getParameter("hours")));
+        study.setProfessorId(parseLong(request.getParameter("professor_id")));
+        study.setAvgMark(parseDouble(request.getParameter("avg_mark")));
+        return  study;
+    }
 
     @Override
     public String toString() {

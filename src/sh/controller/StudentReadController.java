@@ -14,7 +14,7 @@ import java.io.IOException;
 import static java.lang.Long.parseLong;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
-public class StudentFormController extends HttpServlet {
+public class StudentReadController extends HttpServlet {
 
     private final StudentDao dao = DaoFactory.createStudentDao(DB2);
 
@@ -41,19 +41,5 @@ public class StudentFormController extends HttpServlet {
         } catch (DAOException e) {
             throw new ServletException(e);
         }
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Student student = Student.parseRequest(request);
-        long id = parseLong(request.getParameter("oldId"));
-        try {
-            dao.saveOrUpdate(id, student);
-            request.setAttribute("message", "success");
-        } catch (DAOException e) {
-            request.setAttribute("message", "fail");
-        }
-        request.setAttribute("student", student);
-        request.setAttribute("action", "edit");
-        request.getRequestDispatcher("WEB-INF/jsp/student-form.jsp").forward(request, response);
     }
 }

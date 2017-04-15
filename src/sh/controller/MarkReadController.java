@@ -15,7 +15,7 @@ import java.io.IOException;
 import static java.lang.Long.parseLong;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
-public class MarkController extends HttpServlet {
+public class MarkReadController extends HttpServlet {
 
     MarksDao dao = DaoFactory.createMarksDao(DB2);
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,29 +39,5 @@ public class MarkController extends HttpServlet {
         } catch (DAOException e) {
             throw new ServletException(e);
         }
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        double avgMark = parseDouble(request.getParameter("avgMark"));
-//        String firstName = request.getParameter("firstName");
-//        String secondName = request.getParameter("secondName");
-//        String fatherName = request.getParameter("fatherName");
-//        Date birthDate = null;
-//        try {
-//            String birth = request.getParameter("birthDate");
-//            java.util.Date parse = new SimpleDateFormat("yyyy-MM-dd").parse(birth);
-//            birthDate = new Date(parse.getTime());
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        int id = parseInt(request.getParameter("id"));
-//
-//        Professor professor = new Professor(id, firstName, secondName, fatherName, birthDate, avgMark);
-//        Professor saveOrUpdate = service.saveOrUpdate(professor);
-//
-//        request.setAttribute("message", "All right");
-//        request.setAttribute("professor", saveOrUpdate);
-//        request.setAttribute("action", "edit");
-//        request.getRequestDispatcher("WEB-INF/jsp/professor-form.jsp").forward(request, response);
     }
 }

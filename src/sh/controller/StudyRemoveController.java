@@ -2,29 +2,29 @@ package sh.controller;
 
 import sh.dao.DaoFactory;
 import sh.dao.Exception.DAOException;
-import sh.dao.ProfessorDao;
-import sh.model.Professor;
+import sh.dao.StudentDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 import static sh.dao.DaoFactory.DaoType.DB2;
 
-public class ProfessorsController extends HttpServlet {
-    ProfessorDao dao = DaoFactory.createProfessorDao(DB2);
+public class StudyRemoveController extends HttpServlet {
+
+    StudentDao dao = DaoFactory.createStudentDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Professor> professors = null;
+        long id = Long.parseLong(request.getParameter("id"));
         try {
-            professors = dao.getList();
-            request.setAttribute("professors", professors);
-            request.getRequestDispatcher("WEB-INF/jsp/professors.jsp").forward(request, response);
+            dao.remove(id);
+            request.setAttribute("message", "success");
+            response.sendRedirect("/study/list");
         } catch (DAOException e) {
-            throw new ServletException(e);
+            request.setAttribute("message", "fail");
+            request.getRequestDispatcher("/WEB-INF/jsp/study-form.jsp").forward(request, response);
         }
     }
 }

@@ -15,34 +15,9 @@ import java.io.IOException;
 import static java.lang.Long.parseLong;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
-public class ProfessorFormServlet extends HttpServlet {
+public class ProfessorCreateController extends HttpServlet {
 
     ProfessorDao dao = DaoFactory.createProfessorDao(DB2);
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            String id = request.getParameter("id");
-            if (id != null) {
-                Professor professor = dao.findOne(parseLong(id));
-                if (professor == null) {
-                    request.setAttribute("professor", new Group());
-                    request.getRequestDispatcher("resource-not-found.html").forward(request, response);
-                } else {
-                    request.setAttribute("professor", professor);
-                    request.setAttribute("action", "edit");
-                    request.getRequestDispatcher("WEB-INF/jsp/professor-form.jsp").forward(request, response);
-                }
-            } else {
-                request.setAttribute("professor", new Professor());
-                request.setAttribute("action", "saveOrUpdate");
-                request.getRequestDispatcher("WEB-INF/jsp/professor-form.jsp").forward(request, response);
-            }
-        } catch (DAOException e) {
-            throw new ServletException(e);
-        }
-
-
-    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

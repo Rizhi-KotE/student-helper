@@ -1,6 +1,13 @@
 package sh.model;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import static java.lang.Integer.parseInt;
+import static java.lang.Long.parseLong;
 
 public class Mark {
     private long id;
@@ -10,6 +17,25 @@ public class Mark {
     private long professorId;
     private int mark;
     private String comments;
+
+    public static Mark parseRequest(HttpServletRequest request) throws ServletException {
+        Mark mark = new Mark();
+        mark.setId(parseLong(request.getParameter("id")));
+        mark.setStudyId(parseLong(request.getParameter("study_id")));
+        mark.setStudentId(parseLong(request.getParameter("student_id")));
+        Date date = null;
+        try {
+            String birth = request.getParameter("birthDate");
+            date = new Date(new SimpleDateFormat("yyyy-MM-dd").parse(birth).getTime());
+        } catch (ParseException e) {
+            throw new ServletException(e);
+        }
+        mark.setDate(date);
+        mark.setProfessorId(parseLong(request.getParameter("professor_id")));
+        mark.setMark(parseInt(request.getParameter("mark")));
+        mark.setComments(request.getParameter("comments"));
+        return mark;
+    }
 
     public Date getDate() {
         return date;
