@@ -10,9 +10,7 @@ public interface Dao<T, S extends Serializable> {
 
     T findOne(S id) throws DAOException;
 
-//    T update(S id, T entity) throws DAOException;
-
     int remove(S id) throws DAOException;
 
-    int save(S id, T entity) throws DAOException;
+    T saveOrUpdate(S id, T entity) throws DAOException;
 }

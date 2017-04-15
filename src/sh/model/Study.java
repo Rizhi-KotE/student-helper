@@ -4,8 +4,19 @@ public class Study {
     private long id;
     private String name;
     private double hours;
-    private int professorId;
+    private long professorId;
     private double avgMark;
+
+    @Override
+    public String toString() {
+        return "Study{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", hours=" + hours +
+                ", professorId=" + professorId +
+                ", avgMark=" + avgMark +
+                '}';
+    }
 
     public long getId() {
         return id;
@@ -31,11 +42,11 @@ public class Study {
         this.hours = hours;
     }
 
-    public int getProfessorId() {
+    public long getProfessorId() {
         return professorId;
     }
 
-    public void setProfessorId(int professorId) {
+    public void setProfessorId(long professorId) {
         this.professorId = professorId;
     }
 
@@ -46,5 +57,4 @@ public class Study {
     public void setAvgMark(double avgMark) {
         this.avgMark = avgMark;
     }
-
 }

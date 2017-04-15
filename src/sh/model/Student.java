@@ -12,6 +12,17 @@ public class Student {
     private String groupNumber;
     private long id;
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", avgMark=" + avgMark +
+                ", groupNumber='" + groupNumber + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
     public static Student parseRequest(HttpServletRequest request) {
         Student student = new Student();
         student.setFirstName(request.getParameter("firstName"));

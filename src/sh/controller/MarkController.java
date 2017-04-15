@@ -33,7 +33,7 @@ public class MarkController extends HttpServlet {
                 }
             } else {
                 request.setAttribute("mark", new Mark());
-                request.setAttribute("action", "save");
+                request.setAttribute("action", "saveOrUpdate");
                 request.getRequestDispatcher("WEB-INF/jsp/mark-form.jsp").forward(request, response);
             }
         } catch (DAOException e) {
@@ -57,10 +57,10 @@ public class MarkController extends HttpServlet {
 //        int id = parseInt(request.getParameter("id"));
 //
 //        Professor professor = new Professor(id, firstName, secondName, fatherName, birthDate, avgMark);
-//        Professor save = service.save(professor);
+//        Professor saveOrUpdate = service.saveOrUpdate(professor);
 //
 //        request.setAttribute("message", "All right");
-//        request.setAttribute("professor", save);
+//        request.setAttribute("professor", saveOrUpdate);
 //        request.setAttribute("action", "edit");
 //        request.getRequestDispatcher("WEB-INF/jsp/professor-form.jsp").forward(request, response);
     }

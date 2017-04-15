@@ -9,10 +9,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import static java.lang.String.format;
+
 public class DB2StudentDao implements StudentDao {
 
     public static final String SELECT_BY_ID = "SELECT * FROM students WHERE id=?";
     public static final String SELECT_ALL = "SELECT * FROM students";
+    public static final String DELETE_BY_ID = "DELETE FROM students WHERE id=?;";
+    public static final String INSERT = "INSERT INTO students(first_name, second_name, avg_mark) VALUES (?,?,?);";
+    public static final String UPDATE = "UPDATE students SET first_name=?, second_name=?, avg_mark=? WHERE id=?;";
     private final DB2JDBCTemplate<Student> template;
     private final Collector<Student> collector = new Collector<Student>() {
         @Override
@@ -45,11 +50,32 @@ public class DB2StudentDao implements StudentDao {
 
     @Override
     public int remove(Long id) throws DAOException {
-        throw new RuntimeException();
+        if (template.executeUpdate(DELETE_BY_ID, new Object[]{id}) == 1) return 1;
+        else throw new DAOException(format("incorect remove student %s", id));
     }
 
     @Override
-    public int save(Long id, Student entity) throws DAOException {
-        throw new RuntimeException();
+    public Student saveOrUpdate(Long id, Student entity) throws DAOException {
+        if (id == 0) {
+            Object[] params = {entity.getFirstName(), entity.getSecondName(),
+                    entity.getAvgMark()};
+            List<Object[]> objects = template.executeAndReturnKey(INSERT,
+                    params, new String[]{"id"});
+            if (objects.size() == 1) {
+                entity.setId((Long) objects.get(0)[0]);
+                return entity;
+            } else {
+                throw new DAOException(format("incorrect save %s", entity));
+            }
+        } else {
+            Object[] params = {entity.getFirstName(), entity.getSecondName(),
+                    entity.getAvgMark(), entity.getId()};
+            if (template.executeUpdate(UPDATE,
+                    params) == 1) {
+                return entity;
+            } else {
+                throw new DAOException(format("incorrect update %s", entity));
+            }
+        }
     }
 }

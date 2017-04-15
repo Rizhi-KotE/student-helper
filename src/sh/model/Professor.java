@@ -84,4 +84,16 @@ public class Professor {
         professor.birthDate = birthDate;
         return professor;
     }
+
+    @Override
+    public String toString() {
+        return "Professor{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", fatherName='" + fatherName + '\'' +
+                ", birthDate=" + birthDate +
+                ", avgMark=" + avgMark +
+                '}';
+    }
 }

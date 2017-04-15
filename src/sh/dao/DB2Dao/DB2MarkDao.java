@@ -9,11 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import static java.lang.String.format;
+
 public class DB2MarkDao implements MarksDao {
-    public static final String SELECT_BY_ID = "SELECT * FROM marks WHERE id=?";
-    public static final String INSERT = "INSERT INTO marks VALUES (?,?,?,?,?,?,?)";
-    public static final String UPDATE = "UPDATE marks SET study_id=?, student_id=?, date=?, professor_id=?, mark=?, comments=? WHERE id=?";
-    public static final String DELETE_BY_ID = "DELETE FROM marks WHERE id=?";
+    private static final String SELECT_BY_ID = "SELECT * FROM marks WHERE id=?";
+    private static final String INSERT = "INSERT INTO marks(study_id, student_id, date, professor_id, mark, comments) VALUES (?,?,?,?,?,?);";
+    private static final String UPDATE = "UPDATE marks SET study_id=?, student_id=?, date=?, professor_id=?, mark=?, comments=? WHERE id=?";
+    private static final String DELETE_BY_ID = "DELETE FROM marks WHERE id=?";
     private Collector<Mark> collector = new Collector<Mark>() {
         @Override
         public Mark collect(ResultSet rs) throws SQLException {
@@ -50,24 +52,35 @@ public class DB2MarkDao implements MarksDao {
     }
 
     @Override
-    public int remove(Long number) throws DAOException {
-        return template.executeUpdate(DELETE_BY_ID, new Object[]{number});
+    public int remove(Long id) throws DAOException {
+        if (template.executeUpdate(DELETE_BY_ID, new Object[]{id}) == 1) return 1;
+        else throw new DAOException(format("incorect remove mark %s", id));
     }
 
     @Override
-    public int save(Long number, Mark entity) throws DAOException {
+    public Mark saveOrUpdate(Long number, Mark entity) throws DAOException {
         if (number == 0) {
             Object[] params = {entity.getId(), entity.getStudyId(), entity.getStudentId(),
                     entity.getDate(), entity.getProfessorId(),
                     entity.getMark(), entity.getComments()};
-            return template.executeUpdate(INSERT,
-                    params);
+            List<Object[]> objects = template.executeAndReturnKey(INSERT,
+                    params, new String[]{"id"});
+            if (objects.size() == 1) {
+                entity.setId((Long) objects.get(0)[0]);
+                return entity;
+            } else {
+                throw new DAOException(format("incorrect save %s", entity));
+            }
         } else {
             Object[] params = {entity.getStudyId(), entity.getStudentId(),
                     entity.getDate(), entity.getProfessorId(),
                     entity.getMark(), entity.getComments(), entity.getId()};
-            return template.executeUpdate(UPDATE, params);
-
+            if (template.executeUpdate(UPDATE,
+                    params) == 1) {
+                return entity;
+            }else {
+                throw new DAOException(format("incorrect update %s", entity));
+            }
         }
     }
 }

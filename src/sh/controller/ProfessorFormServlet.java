@@ -11,12 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
-import static java.lang.Double.parseDouble;
-import static java.lang.Integer.parseInt;
 import static java.lang.Long.parseLong;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
@@ -39,7 +34,7 @@ public class ProfessorFormServlet extends HttpServlet {
                 }
             } else {
                 request.setAttribute("professor", new Professor());
-                request.setAttribute("action", "save");
+                request.setAttribute("action", "saveOrUpdate");
                 request.getRequestDispatcher("WEB-INF/jsp/professor-form.jsp").forward(request, response);
             }
         } catch (DAOException e) {
@@ -50,25 +45,20 @@ public class ProfessorFormServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        long oldId = parseLong(request.getParameter("oldId"));
+        Professor professor = Professor.parseRequest(request);
         try {
 
-            long oldId = parseLong(request.getParameter("oldId"));
-
-
-            Professor professor = Professor.parseRequest(request);
-            if (dao.save(oldId, professor) == 1) {
-                request.setAttribute("message", "success");
-            }else {
-                request.setAttribute("message", "fail");
-            };
-
-            request.setAttribute("message", "All right");
-            request.setAttribute("professor", professor);
-            request.setAttribute("action", "edit");
-            request.getRequestDispatcher("WEB-INF/jsp/professor-form.jsp").forward(request, response);
+            professor = dao.saveOrUpdate(oldId, professor);
+            request.setAttribute("message", "success");
         } catch (DAOException e) {
-            throw new ServletException(e);
+            request.setAttribute("message", "fail");
         }
+        request.setAttribute("message", "All right");
+        request.setAttribute("professor", professor);
+        request.setAttribute("action", "edit");
+        request.getRequestDispatcher("WEB-INF/jsp/professor-form.jsp").forward(request, response);
 
     }
 }

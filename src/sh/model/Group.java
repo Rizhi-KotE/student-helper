@@ -34,4 +34,12 @@ public class Group {
     public void setAvgMark(double avgMark) {
         this.avgMark = avgMark;
     }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "groupNumber='" + groupNumber + '\'' +
+                ", avgMark=" + avgMark +
+                '}';
+    }
 }

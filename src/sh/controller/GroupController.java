@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static java.lang.Double.parseDouble;
-import static java.lang.Integer.parseInt;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class GroupController extends HttpServlet {
@@ -34,7 +32,7 @@ public class GroupController extends HttpServlet {
                 }
             } else {
                 request.setAttribute("group", new Group());
-                request.setAttribute("action", "save");
+                request.setAttribute("action", "saveOrUpdate");
                 request.getRequestDispatcher("WEB-INF/jsp/group-form.jsp").forward(request, response);
             }
         } catch (DAOException e) {
@@ -43,23 +41,18 @@ public class GroupController extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Group group = Group.parseRequest(request);
+        String oldNumber = request.getParameter("oldNumber");
         try {
 
-
-            Group group = Group.parseRequest(request);
-            String oldNumber = request.getParameter("oldNumber");
-            if (dao.save(oldNumber, group) == 1) {
-                request.setAttribute("message", "success");
-            } else {
-                request.setAttribute("message", "fail");
-            }
-
-            request.setAttribute("message", "All right");
-            request.setAttribute("group", group);
-            request.setAttribute("action", "edit");
-            request.getRequestDispatcher("WEB-INF/jsp/group-form.jsp").forward(request, response);
+            group = dao.saveOrUpdate(oldNumber, group);
+            request.setAttribute("message", "success");
         } catch (DAOException e) {
-            throw new ServletException(e);
+            request.setAttribute("message", "fail");
         }
+        request.setAttribute("message", "All right");
+        request.setAttribute("group", group);
+        request.setAttribute("action", "edit");
+        request.getRequestDispatcher("WEB-INF/jsp/group-form.jsp").forward(request, response);
     }
 }
