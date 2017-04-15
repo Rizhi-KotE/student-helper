@@ -2,8 +2,8 @@ package sh.controller;
 
 import sh.dao.DaoFactory;
 import sh.dao.Exception.DAOException;
-import sh.dao.GroupDao;
-import sh.model.Group;
+import sh.dao.ProfessorDao;
+import sh.model.Professor;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,15 +14,15 @@ import java.util.List;
 
 import static sh.dao.DaoFactory.DaoType.DB2;
 
-public class GroupListController extends HttpServlet {
-
-    private GroupDao dao = DaoFactory.createGroupDao(DB2);
+public class ProfessorListController extends HttpServlet {
+    ProfessorDao dao = DaoFactory.createProfessorDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Professor> professors = null;
         try {
-            List<Group> groups = dao.getList();
-            request.setAttribute("groups", groups);
-            request.getRequestDispatcher("/WEB-INF/jsp/groups.jsp").forward(request, response);
+            professors = dao.getList();
+            request.setAttribute("professors", professors);
+            request.getRequestDispatcher("WEB-INF/jsp/professors.jsp").forward(request, response);
         } catch (DAOException e) {
             throw new ServletException(e);
         }

@@ -1,32 +1,29 @@
 package sh.model;
 
+import javax.servlet.http.HttpServletRequest;
+
+import static java.lang.Double.parseDouble;
+
 public class Group {
-    private long id;
-    private int groupNumber;
+    private String groupNumber;
     private double avgMark;
 
-    public Group(long id, int groupNumber, double avgMark) {
-        this.id = id;
-        this.groupNumber = groupNumber;
-        this.avgMark = avgMark;
+    public static Group parseRequest(String groupNumber, double avgMark) {
+        return null;
     }
 
-    public Group() {
+    public static Group parseRequest(HttpServletRequest request) {
+        Group group = new Group();
+        group.setGroupNumber(request.getParameter("groupNumber"));
+        group.setAvgMark(parseDouble(request.getParameter("avgMark")));
+        return group;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public int getGroupNumber() {
+    public String getGroupNumber() {
         return groupNumber;
     }
 
-    public void setGroupNumber(int groupNumber) {
+    public void setGroupNumber(String groupNumber) {
         this.groupNumber = groupNumber;
     }
 
@@ -36,5 +33,13 @@ public class Group {
 
     public void setAvgMark(double avgMark) {
         this.avgMark = avgMark;
+    }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "groupNumber='" + groupNumber + '\'' +
+                ", avgMark=" + avgMark +
+                '}';
     }
 }

@@ -1,7 +1,37 @@
 package sh.model;
 
+import javax.servlet.http.HttpServletRequest;
+
+import static java.lang.Double.parseDouble;
+import static java.lang.Long.parseLong;
+
 public class Study {
     private long id;
+    private String name;
+    private double hours;
+    private long professorId;
+    private double avgMark;
+
+    public static Study parseRequest(HttpServletRequest request) {
+        Study study = new Study();
+        study.setId(parseLong(request.getParameter("id")));
+        study.setName(request.getParameter("name"));
+        study.setHours(parseDouble(request.getParameter("hours")));
+        study.setProfessorId(parseLong(request.getParameter("professor_id")));
+        study.setAvgMark(parseDouble(request.getParameter("avg_mark")));
+        return  study;
+    }
+
+    @Override
+    public String toString() {
+        return "Study{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", hours=" + hours +
+                ", professorId=" + professorId +
+                ", avgMark=" + avgMark +
+                '}';
+    }
 
     public long getId() {
         return id;
@@ -10,11 +40,6 @@ public class Study {
     public void setId(long id) {
         this.id = id;
     }
-
-    private String name;
-    private double hours;
-    private int professorId;
-    private double avgMark;
 
     public String getName() {
         return name;
@@ -32,11 +57,11 @@ public class Study {
         this.hours = hours;
     }
 
-    public int getProfessorId() {
+    public long getProfessorId() {
         return professorId;
     }
 
-    public void setProfessorId(int professorId) {
+    public void setProfessorId(long professorId) {
         this.professorId = professorId;
     }
 
@@ -46,13 +71,5 @@ public class Study {
 
     public void setAvgMark(double avgMark) {
         this.avgMark = avgMark;
-    }
-
-    public Study(String name, double hours, int professorId, double avgMark){
-        this.name = name;
-        this.hours = hours;
-        this.professorId = professorId;
-        this.avgMark = avgMark;
-
     }
 }

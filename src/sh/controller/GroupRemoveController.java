@@ -3,28 +3,28 @@ package sh.controller;
 import sh.dao.DaoFactory;
 import sh.dao.Exception.DAOException;
 import sh.dao.GroupDao;
-import sh.model.Group;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 import static sh.dao.DaoFactory.DaoType.DB2;
 
-public class GroupListController extends HttpServlet {
+public class GroupRemoveController extends HttpServlet {
 
-    private GroupDao dao = DaoFactory.createGroupDao(DB2);
+    GroupDao dao = DaoFactory.createGroupDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String groupNumber = request.getParameter("groupNumber");
         try {
-            List<Group> groups = dao.getList();
-            request.setAttribute("groups", groups);
-            request.getRequestDispatcher("/WEB-INF/jsp/groups.jsp").forward(request, response);
+            dao.remove(groupNumber);
+            request.setAttribute("message", "success");
+            response.sendRedirect("/group/list");
         } catch (DAOException e) {
-            throw new ServletException(e);
+            request.setAttribute("message", "fail");
+            request.getRequestDispatcher("/WEB-INF/jsp/group-form.jsp").forward(request, response);
         }
     }
 }

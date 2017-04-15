@@ -3,29 +3,29 @@ package sh.controller;
 import sh.dao.DaoFactory;
 import sh.dao.Exception.DAOException;
 import sh.dao.MarksDao;
-import sh.model.Mark;
+import sh.dao.ProfessorDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 import static sh.dao.DaoFactory.DaoType.DB2;
 
-public class MarkListController extends HttpServlet {
+public class ProfessorRemoveController extends HttpServlet {
 
-    MarksDao dao = DaoFactory.createMarksDao(DB2);
+    ProfessorDao dao = DaoFactory.createProfessorDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Mark> marks = null;
+        long id = Long.parseLong(request.getParameter("id"));
         try {
-            marks = dao.getList();
-            request.setAttribute("marks", marks);
-            request.getRequestDispatcher("WEB-INF/jsp/marks.jsp").forward(request, response);
+            dao.remove(id);
+            request.setAttribute("message", "success");
+            response.sendRedirect("/professor/list");
         } catch (DAOException e) {
-            throw new ServletException(e);
+            request.setAttribute("message", "fail");
+            request.getRequestDispatcher("/WEB-INF/jsp/professor-form.jsp").forward(request, response);
         }
     }
 }

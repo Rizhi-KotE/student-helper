@@ -1,15 +1,52 @@
 package sh.model;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import static java.lang.Integer.parseInt;
+import static java.lang.Long.parseLong;
+
 public class Mark {
     private long id;
-    private Study study;
-    private Student student;
-    private String date;
-    private Professor professor;
+    private long studyId;
+    private long studentId;
+    private Date date;
+    private long professorId;
     private int mark;
     private String comments;
 
+    public static Mark parseRequest(HttpServletRequest request) throws ServletException {
+        Mark mark = new Mark();
+        mark.setId(parseLong(request.getParameter("id")));
+        mark.setStudyId(parseLong(request.getParameter("study_id")));
+        mark.setStudentId(parseLong(request.getParameter("student_id")));
+        Date date = null;
+        try {
+            String birth = request.getParameter("birthDate");
+            date = new Date(new SimpleDateFormat("yyyy-MM-dd").parse(birth).getTime());
+        } catch (ParseException e) {
+            throw new ServletException(e);
+        }
+        mark.setDate(date);
+        mark.setProfessorId(parseLong(request.getParameter("professor_id")));
+        mark.setMark(parseInt(request.getParameter("mark")));
+        mark.setComments(request.getParameter("comments"));
+        return mark;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public long getId() {
+
         return id;
     }
 
@@ -17,36 +54,28 @@ public class Mark {
         this.id = id;
     }
 
-    public Study getStudy() {
-        return study;
+    public long getStudyId() {
+        return studyId;
     }
 
-    public void setStudy(Study study) {
-        this.study = study;
+    public void setStudyId(long studyId) {
+        this.studyId = studyId;
     }
 
-    public Student getStudent() {
-        return student;
+    public long getStudentId() {
+        return studentId;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudentId(long studentId) {
+        this.studentId = studentId;
     }
 
-    public String getDate() {
-        return date;
+    public long getProfessorId() {
+        return professorId;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public Professor getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
+    public void setProfessorId(long professorId) {
+        this.professorId = professorId;
     }
 
     public int getMark() {

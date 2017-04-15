@@ -1,21 +1,36 @@
 package sh.model;
 
+import javax.servlet.http.HttpServletRequest;
+
+import static java.lang.Double.parseDouble;
+import static java.lang.Long.parseLong;
+
 public class Student {
     private String firstName;
     private String secondName;
     private double avgMark;
-    private int groupNumber;
+    private String groupNumber;
     private long id;
 
-    public Student() {
+    @Override
+    public String toString() {
+        return "Student{" +
+                "firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", avgMark=" + avgMark +
+                ", groupNumber='" + groupNumber + '\'' +
+                ", id=" + id +
+                '}';
     }
 
-    public Student(long id, String firstName, String secondName, double avgMark, int groupNumber) {
-        this.id = id;
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.avgMark = avgMark;
-        this.groupNumber = groupNumber;
+    public static Student parseRequest(HttpServletRequest request) {
+        Student student = new Student();
+        student.setFirstName(request.getParameter("firstName"));
+        student.setSecondName(request.getParameter("secondName"));
+        student.setAvgMark(parseDouble(request.getParameter("avgMark")));
+        student.setGroupNumber(request.getParameter("groupNumber"));
+        student.setId(parseLong(request.getParameter("id")));
+        return student;
     }
 
     public String getFirstName() {
@@ -42,19 +57,19 @@ public class Student {
         this.avgMark = avgMark;
     }
 
-    public int getGroupNumber() {
+    public String getGroupNumber() {
         return groupNumber;
     }
 
-    public void setGroupNumber(int groupNumber) {
+    public void setGroupNumber(String groupNumber) {
         this.groupNumber = groupNumber;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 }

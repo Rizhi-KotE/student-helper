@@ -1,6 +1,13 @@
 package sh.model;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import static java.lang.Double.parseDouble;
+import static java.lang.Long.parseLong;
 
 public class Professor {
     private long id;
@@ -10,26 +17,9 @@ public class Professor {
     private Date birthDate;
     private double avgMark;
 
-    public Professor() {
-        birthDate = new Date(0);
-    }
-
-    public Professor(long id, String firstName, String secondName, String fatherName, Date birthDate, double avgMark) {
-        this.id = id;
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.fatherName = fatherName;
-        this.birthDate = birthDate;
-        this.avgMark = avgMark;
-    }
-
     public long getId() {
 
         return id;
-    }
-
-    public Professor(long id) {
-        this.id = id;
     }
 
     public void setId(long id) {
@@ -74,5 +64,36 @@ public class Professor {
 
     public void setAvgMark(double avgMark) {
         this.avgMark = avgMark;
+    }
+
+    public static Professor parseRequest(HttpServletRequest request) throws ServletException {
+        Professor professor = new Professor();
+        Date birthDate = null;
+        try {
+            String birth = request.getParameter("birthDate");
+            java.util.Date parse = new SimpleDateFormat("yyyy-MM-dd").parse(birth);
+            birthDate = new Date(parse.getTime());
+        } catch (ParseException e) {
+            throw new ServletException(e);
+        }
+        professor.id = parseLong(request.getParameter("id"));
+        professor.avgMark= parseDouble(request.getParameter("avgMark"));
+        professor.firstName = request.getParameter("firstName");
+        professor.secondName = request.getParameter("secondName");
+        professor.fatherName = request.getParameter("fatherName");
+        professor.birthDate = birthDate;
+        return professor;
+    }
+
+    @Override
+    public String toString() {
+        return "Professor{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", fatherName='" + fatherName + '\'' +
+                ", birthDate=" + birthDate +
+                ", avgMark=" + avgMark +
+                '}';
     }
 }

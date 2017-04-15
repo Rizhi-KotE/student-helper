@@ -1,15 +1,9 @@
 package sh.dao;
 
+import sh.dao.Exception.DAOException;
 import sh.model.User;
-
-import java.sql.SQLException;
-import java.util.List;
 
 public interface UserDao {
 
-    List<User> getUsers() throws SQLException, ClassNotFoundException;
-
-    User findByUsername(String username) throws SQLException, ClassNotFoundException;
-
-    User update(User user);
+    User getByUsernameAndPassword(String username, String password) throws DAOException;
 }

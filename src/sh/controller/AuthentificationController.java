@@ -1,8 +1,10 @@
 package sh.controller;
 
 
+import sh.dao.DaoFactory;
+import sh.dao.Exception.DAOException;
+import sh.dao.UserDao;
 import sh.model.User;
-import sh.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,11 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static sh.dao.DaoFactory.DaoType.DB2;
+
 
 public class AuthentificationController extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
-    UserService service = UserService.getInstance();
+    private final UserDao dao = DaoFactory.createUserDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(request, response);
@@ -35,11 +38,10 @@ public class AuthentificationController extends HttpServlet {
     }
 
     private User getUser(String username, String password) {
-        User user = service.getUserByUsername(username);
-        if (user != null && user.getPassword().equals(password)) {
-            return user;
-        } else {
-            return null;
+        try {
+            return dao.getByUsernameAndPassword(username, password);
+        } catch (DAOException e) {
+            throw new SecurityException(e);
         }
     }
 }
