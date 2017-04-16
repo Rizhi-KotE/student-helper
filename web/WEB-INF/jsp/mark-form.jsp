@@ -51,7 +51,7 @@
 <form class="form-horizontal" action="<c:url value="/mark/create"/>" method="get">
     <div class="form-group">
         <label class="control-label col-sm-2" for="studyId">
-            Study id
+            Study:
         </label>
 
         <div class="col-sm-10">
@@ -70,7 +70,7 @@
     </div>
     <div class="form-group">
         <label class="control-label col-sm-2" for="studentId">
-            Student id:
+            Student:
         </label>
 
         <div class="col-sm-10">
@@ -97,7 +97,7 @@
     <div class="form-group">
 
         <label class="control-label col-sm-2" for="professorId">
-            Professor id:
+            Professor:
         </label>
 
         <div class="col-sm-10">

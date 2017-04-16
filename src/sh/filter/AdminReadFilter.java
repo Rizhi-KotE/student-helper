@@ -22,7 +22,7 @@ public class AdminReadFilter implements Filter {
         if (user != null && user.getRole() == ADMIN) {
             chain.doFilter(req, resp);
         } else {
-            httpResponse.sendRedirect("access-denied");
+            httpRequest.getRequestDispatcher("access-denied").forward(httpRequest, httpResponse);
         }
     }
 

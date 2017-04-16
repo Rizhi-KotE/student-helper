@@ -30,7 +30,7 @@ public class ProfessorReadController extends HttpServlet {
             if (id != null) {
                 Professor professor = dao.findOne(parseLong(id));
                 if (professor == null) {
-                    request.setAttribute("professor", new Group());
+                    request.setAttribute("professor", new Professor());
                     request.getRequestDispatcher("resource-not-found.html").forward(request, response);
                 } else {
                     request.setAttribute("professor", professor);

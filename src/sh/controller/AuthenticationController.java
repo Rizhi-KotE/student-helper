@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static java.lang.String.format;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
 
@@ -29,10 +30,10 @@ public class AuthenticationController extends HttpServlet {
         User user = getUser(username, password);
         if (user != null) {
             request.getSession().setAttribute("user", user);
-            response.sendRedirect("choose-action");
+            response.sendRedirect(format("%s/choose-action", request.getContextPath()));
         } else {
             request.setAttribute("message", "Login or password is incorrect");
-            response.sendRedirect("login");
+            request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
         }
     }
 

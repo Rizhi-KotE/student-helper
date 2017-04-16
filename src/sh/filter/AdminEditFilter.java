@@ -25,7 +25,7 @@ public class AdminEditFilter implements Filter {
         } else if (httpRequest.getMethod().equals("GET")) {
             chain.doFilter(req, resp);
         } else {
-            httpResponse.sendRedirect("access-denied");
+            httpRequest.getRequestDispatcher("access-denied").forward(httpRequest, httpResponse);
         }
     }
 

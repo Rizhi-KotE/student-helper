@@ -3,24 +3,6 @@
          xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-    <filter>
-        <filter-name>CharsetFilter</filter-name>
-        <filter-class>sh.filter.CharsetFilter</filter-class>
-        <init-param>
-            <param-name>requestEncoding</param-name>
-            <param-value>UTF-8</param-value>
-        </init-param>
-    </filter>
-    <jsp-config>
-        <jsp-property-group>
-            <url-pattern>*.jsp</url-pattern>
-            <page-encoding>UTF-8</page-encoding>
-        </jsp-property-group>
-    </jsp-config>
-    <filter-mapping>
-        <filter-name>CharsetFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
     <servlet>
         <servlet-name>AuthServlet</servlet-name>
         <servlet-class>sh.controller.AuthenticationController</servlet-class>
@@ -73,7 +55,24 @@
         <servlet-name>StudyCreateController</servlet-name>
         <servlet-name>StudyRemoveController</servlet-name>
     </filter-mapping>
-
+    <filter>
+        <filter-name>CharsetFilter</filter-name>
+        <filter-class>sh.filter.CharsetFilter</filter-class>
+        <init-param>
+            <param-name>requestEncoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharsetFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
     <servlet-mapping>
         <servlet-name>ChooseActionController</servlet-name>
         <url-pattern>/choose-action</url-pattern>

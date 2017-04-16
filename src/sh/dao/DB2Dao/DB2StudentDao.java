@@ -16,8 +16,8 @@ public class DB2StudentDao implements StudentDao {
     public static final String SELECT_BY_ID = "SELECT * FROM students WHERE id=?";
     public static final String SELECT_ALL = "SELECT * FROM students";
     public static final String DELETE_BY_ID = "DELETE FROM students WHERE id=?;";
-    public static final String INSERT = "INSERT INTO students(first_name, second_name, avg_mark) VALUES (?,?,?);";
-    public static final String UPDATE = "UPDATE students SET first_name=?, second_name=?, avg_mark=? WHERE id=?;";
+    public static final String INSERT = "INSERT INTO students(first_name, second_name, avg_mark, group_number) VALUES (?,?,?, ?);";
+    public static final String UPDATE = "UPDATE students SET first_name=?, second_name=?, avg_mark=?, group_number=? WHERE id=?;";
     private final DB2JDBCTemplate<Student> template;
     private final Collector<Student> collector = new Collector<Student>() {
         @Override
@@ -58,7 +58,7 @@ public class DB2StudentDao implements StudentDao {
     public Student saveOrUpdate(Long id, Student entity) throws DAOException {
         if (id == 0) {
             Object[] params = {entity.getFirstName(), entity.getSecondName(),
-                    entity.getAvgMark()};
+                    entity.getAvgMark(), entity.getGroupNumber()};
             List<Object[]> objects = template.executeAndReturnKey(INSERT,
                     params, new String[]{"id"});
             if (objects.size() == 1) {
@@ -69,7 +69,7 @@ public class DB2StudentDao implements StudentDao {
             }
         } else {
             Object[] params = {entity.getFirstName(), entity.getSecondName(),
-                    entity.getAvgMark(), entity.getId()};
+                    entity.getAvgMark(), entity.getGroupNumber(), entity.getId()};
             if (template.executeUpdate(UPDATE,
                     params) == 1) {
                 return entity;

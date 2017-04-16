@@ -3,6 +3,7 @@ package sh.controller;
 import sh.dao.DaoFactory;
 import sh.dao.Exception.DAOException;
 import sh.dao.StudentDao;
+import sh.model.Professor;
 import sh.model.Student;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static java.lang.Long.parseLong;
+import static java.lang.String.format;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class StudentCreateController extends HttpServlet {
@@ -20,15 +22,17 @@ public class StudentCreateController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Student student = Student.parseRequest(request);
+        long oldId = parseLong(request.getParameter("oldId"));
+        String message;
         try {
-            dao.saveOrUpdate(student.getId(), student);
-            request.setAttribute("message", "success");
+            student = dao.saveOrUpdate(oldId, student);
+            message = "success";
         } catch (DAOException e) {
             e.printStackTrace();
-            request.setAttribute("message", "fail");
+            message = "fail";
         }
-        request.setAttribute("student", student);
-        request.setAttribute("action", "edit");
-        request.getRequestDispatcher("/WEB-INF/jsp/student-form.jsp").forward(request, response);
+        request.getSession().setAttribute("message", message);
+        response.sendRedirect(format("%s/student/read?id=%d", request.getContextPath(), student.getId()));
+
     }
 }
