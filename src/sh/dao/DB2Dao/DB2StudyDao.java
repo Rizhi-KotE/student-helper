@@ -13,11 +13,11 @@ import static java.lang.String.format;
 
 public class DB2StudyDao implements StudyDao {
 
-    public static final String SELECT_BY_ID = "SELECT * FROM studies WHERE id=?";
-    public static final String SELECT_ALL = "SELECT * FORM studies";
-    public static final String INSERT = "INSERT INTO studies(name, hours, professor_id, avg_mark) VALUES (?,?,?,?);";
-    public static final String UPDATE = "UPDATE studies SET name=?,hours=?, professor_id=?, avg_mark=? WHERE id=?;";
-    public static final String DELETE_BY_ID = "DELETE FROM studies WHERE id=?";
+    private static final String SELECT_BY_ID = "SELECT * FROM studies WHERE id=?";
+    private static final String SELECT_ALL = "SELECT * FROM studies";
+    private static final String INSERT = "INSERT INTO studies(name, hours, professor_id, avg_mark) VALUES (?,?,?,?);";
+    private static final String UPDATE = "UPDATE studies SET name=?,hours=?, professor_id=?, avg_mark=? WHERE id=?;";
+    private static final String DELETE_BY_ID = "DELETE FROM studies WHERE id=?";
     private final DB2JDBCTemplate<Study> template;
     private final Collector<Study> collector = new Collector<Study>() {
         @Override

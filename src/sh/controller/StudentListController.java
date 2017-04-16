@@ -22,7 +22,7 @@ public class StudentListController extends HttpServlet {
 
         try {
             request.setAttribute("students", dao.getList());
-            request.getRequestDispatcher("WEB-INF/jsp/student-list.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/student-list.jsp").forward(request, response);
         } catch (DAOException e) {
             throw new ServletException(e);
         }

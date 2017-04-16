@@ -105,18 +105,18 @@ public class DB2JDBCTemplate<T> {
         ResultSet rs = null;
         try {
             connection = getConnection();
-            statement = connection.prepareStatement(query, generated);
+            statement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
 
             for (int i = 0; i < params.length; i++) {
                 statement.setObject(i + 1, params[i]);
             }
-            statement.execute();
+            statement.executeUpdate();
             rs = statement.getGeneratedKeys();
             List<Object[]> result = new ArrayList<Object[]>();
             while (rs.next()) {
                 Object[] keys = new Object[generated.length];
                 for (int i = 0; i < generated.length; i++) {
-                    keys[i] = rs.getObject(generated[i]);
+                    keys[i] = rs.getObject(i+1);
                 }
                 result.add(keys);
             }

@@ -7,7 +7,9 @@
     <title>Professor</title>
 </head>
 <body>
+<span>${message}</span>
 <a href="<c:url value="/professor/list"/>">Back</a>
+<a href="<c:url value="/professor/remove?id=${professor.id}"/>"><button>Remove</button></a>
     <form action="<c:url value="/professor/create"/>" method="post">
         <div>
             <label>First name

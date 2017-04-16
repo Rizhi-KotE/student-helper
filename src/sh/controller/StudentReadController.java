@@ -30,12 +30,12 @@ public class StudentReadController extends HttpServlet {
                 } else {
                     request.setAttribute("student", student);
                     request.setAttribute("action", "edit");
-                    request.getRequestDispatcher("WEB-INF/jsp/student-form.jsp").forward(request, response);
+                    request.getRequestDispatcher("/WEB-INF/jsp/student-form.jsp").forward(request, response);
                 }
             } else {
                 request.setAttribute("student", new Student());
                 request.setAttribute("action", "saveOrUpdate");
-                request.getRequestDispatcher("WEB-INF/jsp/student-form.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/jsp/student-form.jsp").forward(request, response);
             }
         } catch (DAOException e) {
             throw new ServletException(e);

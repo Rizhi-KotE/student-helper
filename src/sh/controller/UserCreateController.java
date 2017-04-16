@@ -26,10 +26,11 @@ public class UserCreateController extends HttpServlet {
             dao.saveOrUpdate(id, user);
             request.setAttribute("message", "success");
         } catch (DAOException e) {
+            e.printStackTrace();
             request.setAttribute("message", "fail");
         }
         request.setAttribute("user", user);
         request.setAttribute("action", "edit");
-        request.getRequestDispatcher("WEB-INF/jsp/user-form.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/user-form.jsp").forward(request, response);
     }
 }

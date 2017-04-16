@@ -85,7 +85,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>StudentListController</servlet-name>
-        <servlet-class>sh.controller.StudentRemoveController</servlet-class>
+        <servlet-class>sh.controller.StudentListController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>StudentListController</servlet-name>
@@ -117,7 +117,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>UserListController</servlet-name>
-        <servlet-class>sh.controller.UserRemoveController</servlet-class>
+        <servlet-class>sh.controller.UserListController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UserListController</servlet-name>
@@ -149,7 +149,7 @@
     <!--</servlet-mapping>-->
     <servlet>
         <servlet-name>MarkListController</servlet-name>
-        <servlet-class>sh.controller.MarkRemoveController</servlet-class>
+        <servlet-class>sh.controller.MarkListController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MarkListController</servlet-name>
@@ -181,7 +181,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>StudyListController</servlet-name>
-        <servlet-class>sh.controller.StudyRemoveController</servlet-class>
+        <servlet-class>sh.controller.StudyListController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>StudyListController</servlet-name>
@@ -213,7 +213,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>GroupListController</servlet-name>
-        <servlet-class>sh.controller.GroupRemoveController</servlet-class>
+        <servlet-class>sh.controller.GroupListController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>GroupListController</servlet-name>
@@ -246,7 +246,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>ProfessorListController</servlet-name>
-        <servlet-class>sh.controller.ProfessorRemoveController</servlet-class>
+        <servlet-class>sh.controller.ProfessorListController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SendMessage</servlet-name>

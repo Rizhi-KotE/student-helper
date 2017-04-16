@@ -7,7 +7,8 @@
     <title>Student form</title>
 </head>
 <body>
-<form class="student-form" action="<c:url value="/student/list"/>" method="post">
+<span>${message}</span>
+<form class="student-form" action="<c:url value="/student/create"/>" method="post">
     <div>
         <label for="firstName">First name
             <input id="firstName" name="firstName" type="text" value="${student.firstName}">
@@ -37,7 +38,7 @@
 
 <div class="student-form controls">
     <a href="<c:url value="/student/list"/>">Back</a>
-
+    <button><a href="<c:url value="/student/remove?id=${student.id}"/>"></a></button>
     <%--<form action="student" method="delete">--%>
         <%--<button>Delete</button>--%>
     <%--</form>--%>

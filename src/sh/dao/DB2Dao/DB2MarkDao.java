@@ -60,7 +60,7 @@ public class DB2MarkDao implements MarksDao {
     @Override
     public Mark saveOrUpdate(Long number, Mark entity) throws DAOException {
         if (number == 0) {
-            Object[] params = {entity.getId(), entity.getStudyId(), entity.getStudentId(),
+            Object[] params = {entity.getStudyId(), entity.getStudentId(),
                     entity.getDate(), entity.getProfessorId(),
                     entity.getMark(), entity.getComments()};
             List<Object[]> objects = template.executeAndReturnKey(INSERT,

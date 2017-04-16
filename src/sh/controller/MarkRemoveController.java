@@ -22,8 +22,9 @@ public class MarkRemoveController extends HttpServlet {
         try {
             dao.remove(id);
             request.setAttribute("message", "success");
-            response.sendRedirect("/mark/list");
+            request.getRequestDispatcher("/mark/list").forward(request, response);
         } catch (DAOException e) {
+            e.printStackTrace();
             request.setAttribute("message", "fail");
             request.getRequestDispatcher("/WEB-INF/jsp/mark-form.jsp").forward(request, response);
         }

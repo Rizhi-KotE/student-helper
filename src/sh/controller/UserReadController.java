@@ -29,13 +29,14 @@ public class UserReadController extends HttpServlet {
                     request.getRequestDispatcher("resource-not-found.html").forward(request, response);
                 } else {
                     request.setAttribute("user", user);
-                    request.getRequestDispatcher("WEB-INF/jsp/user-form.jsp").forward(request, response);
+                    request.getRequestDispatcher("/WEB-INF/jsp/user-form.jsp").forward(request, response);
                 }
             } else {
                 request.setAttribute("study", new User());
-                request.getRequestDispatcher("WEB-INF/jsp/user-form.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/jsp/user-form.jsp").forward(request, response);
             }
         } catch (DAOException e) {
+            e.printStackTrace();
             throw new ServletException(e);
         }
     }

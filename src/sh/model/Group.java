@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import static java.lang.Double.parseDouble;
 
 public class Group {
-    private String groupNumber;
+    private String groupNumber = "";
     private double avgMark;
 
     public static Group parseRequest(String groupNumber, double avgMark) {
@@ -14,7 +14,10 @@ public class Group {
 
     public static Group parseRequest(HttpServletRequest request) {
         Group group = new Group();
-        group.setGroupNumber(request.getParameter("groupNumber"));
+        String groupNumber = request.getParameter("groupNumber");
+        if(groupNumber!=null){
+            group.setGroupNumber(groupNumber);
+        }
         group.setAvgMark(parseDouble(request.getParameter("avgMark")));
         return group;
     }

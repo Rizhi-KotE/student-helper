@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static java.lang.String.format;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class GroupRemoveController extends HttpServlet {
@@ -20,11 +21,12 @@ public class GroupRemoveController extends HttpServlet {
         String groupNumber = request.getParameter("groupNumber");
         try {
             dao.remove(groupNumber);
-            request.setAttribute("message", "success");
-            response.sendRedirect("/group/list");
+//            request.getSession().setAttribute("message", "success");
+            response.sendRedirect(format("%s/group/list", request.getContextPath()));
         } catch (DAOException e) {
+            e.printStackTrace();
             request.setAttribute("message", "fail");
-            request.getRequestDispatcher("/WEB-INF/jsp/group-form.jsp").forward(request, response);
+            request.getRequestDispatcher(format("/group/read?groupNumber=%s", groupNumber)).forward(request, response);
         }
     }
 }

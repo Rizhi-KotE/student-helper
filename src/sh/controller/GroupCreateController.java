@@ -11,24 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static java.lang.String.format;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class GroupCreateController extends HttpServlet {
     private final GroupDao dao = DaoFactory.createGroupDao(DB2);
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Group group = Group.parseRequest(request);
         String oldNumber = request.getParameter("oldNumber");
+        String message;
         try {
 
             group = dao.saveOrUpdate(oldNumber, group);
-            request.setAttribute("message", "success");
+            message = "success";
         } catch (DAOException e) {
-            request.setAttribute("message", "fail");
+            e.printStackTrace();
+            message = "fail";
         }
-        request.setAttribute("message", "All right");
-        request.setAttribute("group", group);
-        request.setAttribute("action", "edit");
-        request.getRequestDispatcher("WEB-INF/jsp/group-form.jsp").forward(request, response);
+        request.getSession().setAttribute("message", message);
+        response.sendRedirect(format("%s/group/read?groupNumber=%s", request.getContextPath(), group.getGroupNumber()));
     }
 }

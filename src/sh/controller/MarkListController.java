@@ -23,7 +23,7 @@ public class MarkListController extends HttpServlet {
         try {
             List<Mark> marks = dao.getList();
             request.setAttribute("marks", marks);
-            request.getRequestDispatcher("WEB-INF/jsp/mark-list.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/mark-list.jsp").forward(request, response);
         } catch (DAOException e) {
             throw new ServletException(e);
         }

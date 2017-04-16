@@ -21,8 +21,9 @@ public class ProfessorListController extends HttpServlet {
         try {
             List<Professor>    professors = dao.getList();
             request.setAttribute("professors", professors);
-            request.getRequestDispatcher("WEB-INF/jsp/professor-list.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/professor-list.jsp").forward(request, response);
         } catch (DAOException e) {
+            e.printStackTrace();
             throw new ServletException(e);
         }
     }

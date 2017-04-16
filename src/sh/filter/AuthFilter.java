@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static java.lang.String.format;
+
 @WebFilter(filterName = "AuthFilter")
 public class AuthFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
@@ -20,13 +22,13 @@ public class AuthFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) resp;
 
         User user = (User) httpRequest.getSession().getAttribute("user");
-        String url = httpRequest.getRequestURI();
+        String url = httpRequest.getServletPath();
 
         if (user != null || url.endsWith(".js") || url.endsWith(".css") || url.endsWith(".html") ||
-                url.endsWith(".jsp") || url.endsWith("login") || "/".equals(url)) {
+                url.endsWith(".jsp") || url.equals("/login") || "/".equals(url) || url.startsWith("/static")) {
             chain.doFilter(req, resp);
         } else {
-            httpResponse.sendRedirect("login");
+            httpResponse.sendRedirect(format( "%s/login", httpRequest.getContextPath()));
         }
     }
 

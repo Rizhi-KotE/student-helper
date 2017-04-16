@@ -1,4 +1,3 @@
-<%@ page import="static java.lang.String.format" %>
 <%@ taglib prefix="c"
            uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -22,6 +21,6 @@
         <a href="<c:url value="/student/read?id=${student.id}"/>">${student.id}</a>
     </c:forEach>
 </ul>
-<a href="choose-action">Back</a>
+<a href="<c:url value="/choose-action"/>">Back</a>
 </body>
 </html>

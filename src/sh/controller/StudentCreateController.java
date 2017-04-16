@@ -20,15 +20,15 @@ public class StudentCreateController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Student student = Student.parseRequest(request);
-        long id = parseLong(request.getParameter("oldId"));
         try {
-            dao.saveOrUpdate(id, student);
+            dao.saveOrUpdate(student.getId(), student);
             request.setAttribute("message", "success");
         } catch (DAOException e) {
+            e.printStackTrace();
             request.setAttribute("message", "fail");
         }
         request.setAttribute("student", student);
         request.setAttribute("action", "edit");
-        request.getRequestDispatcher("WEB-INF/jsp/student-form.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/student-form.jsp").forward(request, response);
     }
 }

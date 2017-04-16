@@ -22,16 +22,16 @@ public class StudyCreateController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Study study = Study.parseRequest(request);
-        long id = parseLong(request.getParameter("oldId"));
         try {
-            dao.saveOrUpdate(id, study);
+            dao.saveOrUpdate(study.getId(), study);
             request.setAttribute("message", "success");
         } catch (DAOException e) {
+            e.printStackTrace();
             request.setAttribute("message", "fail");
         }
         request.setAttribute("study", study);
         request.setAttribute("action", "edit");
-        request.getRequestDispatcher("WEB-INF/jsp/study-form.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/study-form.jsp").forward(request, response);
     }
 
 }

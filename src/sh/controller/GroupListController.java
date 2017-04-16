@@ -24,6 +24,7 @@ public class GroupListController extends HttpServlet {
             request.setAttribute("groups", groups);
             request.getRequestDispatcher("/WEB-INF/jsp/group-list.jsp").forward(request, response);
         } catch (DAOException e) {
+            e.printStackTrace();
             throw new ServletException(e);
         }
     }

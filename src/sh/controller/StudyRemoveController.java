@@ -21,8 +21,9 @@ public class StudyRemoveController extends HttpServlet {
         try {
             dao.remove(id);
             request.setAttribute("message", "success");
-            response.sendRedirect("/study/list");
+            request.getRequestDispatcher("/study/list").forward(request, response);
         } catch (DAOException e) {
+            e.printStackTrace();
             request.setAttribute("message", "fail");
             request.getRequestDispatcher("/WEB-INF/jsp/study-form.jsp").forward(request, response);
         }

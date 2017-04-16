@@ -17,6 +17,10 @@ public class Professor {
     private Date birthDate;
     private double avgMark;
 
+    public Professor() {
+        birthDate = new Date(0);
+    }
+
     public long getId() {
 
         return id;

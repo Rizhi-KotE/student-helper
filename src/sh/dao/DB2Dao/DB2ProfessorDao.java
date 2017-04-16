@@ -59,7 +59,7 @@ public class DB2ProfessorDao implements ProfessorDao {
     @Override
     public Professor saveOrUpdate(Long id, Professor entity) throws DAOException {
         if (id == 0) {
-            Object[] params = {entity.getId(), entity.getFirstName(), entity.getSecondName(),
+            Object[] params = {entity.getFirstName(), entity.getSecondName(),
                     entity.getFatherName(), entity.getBirthDate(),
                     entity.getAvgMark()};
             List<Object[]> objects = template.executeAndReturnKey(INSERT,

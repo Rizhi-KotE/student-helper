@@ -55,10 +55,7 @@ public class DB2GroupDao implements GroupDao {
     public Group saveOrUpdate(String number, Group entity) throws DAOException {
         if ("".equals(number)) {
             Object[] params = {entity.getGroupNumber(), entity.getAvgMark()};
-            List<Object[]> objects = template.executeAndReturnKey(INSERT,
-                    params, new String[]{"id"});
-            if (objects.size() == 1) {
-                entity.setGroupNumber((String) objects.get(0)[0]);
+            if (template.executeUpdate(INSERT, params) == 1) {
                 return entity;
             } else {
                 throw new DAOException(format("incorrect save %s", entity));

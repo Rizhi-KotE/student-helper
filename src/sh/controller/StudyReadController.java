@@ -29,11 +29,11 @@ public class StudyReadController extends HttpServlet {
                     request.getRequestDispatcher("resource-not-found.html").forward(request, response);
                 } else {
                     request.setAttribute("study", study);
-                    request.getRequestDispatcher("WEB-INF/jsp/study-form.jsp").forward(request, response);
+                    request.getRequestDispatcher("/WEB-INF/jsp/study-form.jsp").forward(request, response);
                 }
             } else {
                 request.setAttribute("study", new Study());
-                request.getRequestDispatcher("WEB-INF/jsp/study-form.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/jsp/study-form.jsp").forward(request, response);
             }
         } catch (DAOException e) {
             throw new ServletException(e);

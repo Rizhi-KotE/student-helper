@@ -18,20 +18,24 @@ public class Mark {
     private int mark;
     private String comments;
 
+    public Mark() {
+        date = new Date(0);
+    }
+
     public static Mark parseRequest(HttpServletRequest request) throws ServletException {
         Mark mark = new Mark();
         mark.setId(parseLong(request.getParameter("id")));
-        mark.setStudyId(parseLong(request.getParameter("study_id")));
-        mark.setStudentId(parseLong(request.getParameter("student_id")));
+        mark.setStudyId(parseLong(request.getParameter("studyId")));
+        mark.setStudentId(parseLong(request.getParameter("studentId")));
         Date date;
         try {
-            String birth = request.getParameter("birthDate");
+            String birth = request.getParameter("date");
             date = new Date(new SimpleDateFormat("yyyy-MM-dd").parse(birth).getTime());
         } catch (ParseException e) {
             throw new ServletException(e);
         }
         mark.setDate(date);
-        mark.setProfessorId(parseLong(request.getParameter("professor_id")));
+        mark.setProfessorId(parseLong(request.getParameter("professorId")));
         mark.setMark(parseInt(request.getParameter("mark")));
         mark.setComments(request.getParameter("comments"));
         return mark;

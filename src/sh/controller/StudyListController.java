@@ -19,7 +19,7 @@ public class StudyListController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             request.setAttribute("studies", dao.getList());
-            request.getRequestDispatcher("WEB-INF/jsp/study-list.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/study-list.jsp").forward(request, response);
         } catch (DAOException e) {
             throw new ServletException(e);
         }

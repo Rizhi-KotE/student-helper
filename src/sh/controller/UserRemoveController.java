@@ -22,8 +22,9 @@ public class UserRemoveController extends HttpServlet {
         try {
             dao.remove(user);
             request.setAttribute("message", "success");
-            response.sendRedirect("/user/list");
+            request.getRequestDispatcher("/user/list").forward(request, response);
         } catch (DAOException e) {
+            e.printStackTrace();
             request.setAttribute("message", "fail");
             request.getRequestDispatcher("/WEB-INF/jsp/user-form.jsp").forward(request, response);
         }
