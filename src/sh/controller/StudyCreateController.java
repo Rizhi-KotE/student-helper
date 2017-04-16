@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static java.lang.Long.parseLong;
+import static java.lang.String.format;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class StudyCreateController extends HttpServlet {
@@ -22,16 +23,18 @@ public class StudyCreateController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Study study = Study.parseRequest(request);
+        long oldId = parseLong(request.getParameter("oldId"));
+        String message;
         try {
-            dao.saveOrUpdate(study.getId(), study);
-            request.setAttribute("message", "success");
+            study = dao.saveOrUpdate(oldId, study);
+            message = "success";
         } catch (DAOException e) {
             e.printStackTrace();
-            request.setAttribute("message", "fail");
+            message = "fail";
         }
-        request.setAttribute("study", study);
-        request.setAttribute("action", "edit");
-        request.getRequestDispatcher("/WEB-INF/jsp/study-form.jsp").forward(request, response);
+        request.getSession().setAttribute("message", message);
+        response.sendRedirect(format("%s/study/read?id=%d", request.getContextPath(), study.getId()));
+
     }
 
 }
