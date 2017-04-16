@@ -18,7 +18,7 @@ import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class StudyCreateController extends HttpServlet {
 
-    private StudyDao dao = DaoFactory.createStudyDao(DB2);
+    private final StudyDao dao = DaoFactory.createStudyDao(DB2);
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Study study = Study.parseRequest(request);

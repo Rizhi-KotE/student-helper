@@ -16,7 +16,7 @@ public class DB2MarkDao implements MarksDao {
     private static final String INSERT = "INSERT INTO marks(study_id, student_id, date, professor_id, mark, comments) VALUES (?,?,?,?,?,?);";
     private static final String UPDATE = "UPDATE marks SET study_id=?, student_id=?, date=?, professor_id=?, mark=?, comments=? WHERE id=?";
     private static final String DELETE_BY_ID = "DELETE FROM marks WHERE id=?";
-    private Collector<Mark> collector = new Collector<Mark>() {
+    private final Collector<Mark> collector = new Collector<Mark>() {
         @Override
         public Mark collect(ResultSet rs) throws SQLException {
 
@@ -33,7 +33,7 @@ public class DB2MarkDao implements MarksDao {
         }
     };
 
-    private DB2JDBCTemplate<Mark> template;
+    private final DB2JDBCTemplate<Mark> template;
 
     public DB2MarkDao(DB2JDBCTemplate<Mark> template) {
         this.template = template;
@@ -54,7 +54,7 @@ public class DB2MarkDao implements MarksDao {
     @Override
     public int remove(Long id) throws DAOException {
         if (template.executeUpdate(DELETE_BY_ID, new Object[]{id}) == 1) return 1;
-        else throw new DAOException(format("incorect remove mark %s", id));
+        else throw new DAOException(format("incorrect remove mark %s", id));
     }
 
     @Override

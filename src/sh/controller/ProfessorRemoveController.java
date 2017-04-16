@@ -15,7 +15,7 @@ import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class ProfessorRemoveController extends HttpServlet {
 
-    ProfessorDao dao = DaoFactory.createProfessorDao(DB2);
+    final ProfessorDao dao = DaoFactory.createProfessorDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Long.parseLong(request.getParameter("id"));

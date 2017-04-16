@@ -18,7 +18,7 @@ public class DB2GroupDao implements GroupDao {
     public static final String UPDATE = "UPDATE groups SET group_number = ?, avg_mark = ? WHERE group_number = ?";
     private static final String SELECT_ALL = "SELECT * FROM groups";
     private static final String SELECT_BY_ID = "SELECT * FROM groups WHERE group_number=?";
-    private Collector<Group> collector = new Collector<Group>() {
+    private final Collector<Group> collector = new Collector<Group>() {
         @Override
         public Group collect(ResultSet rs) throws SQLException {
             Group group = new Group();
@@ -27,7 +27,7 @@ public class DB2GroupDao implements GroupDao {
             return group;
         }
     };
-    private DB2JDBCTemplate<Group> template;
+    private final DB2JDBCTemplate<Group> template;
 
     public DB2GroupDao(DB2JDBCTemplate<Group> template) {
         this.template = template;
@@ -48,7 +48,7 @@ public class DB2GroupDao implements GroupDao {
     @Override
     public int remove(String number) throws DAOException {
         if (template.executeUpdate(DELETE_BY_ID, new Object[]{number}) == 1) return 1;
-        else throw new DAOException(format("incorect remove group %s", number));
+        else throw new DAOException(format("incorrect remove group %s", number));
     }
 
     @Override

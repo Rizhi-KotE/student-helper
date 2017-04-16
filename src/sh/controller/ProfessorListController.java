@@ -15,7 +15,7 @@ import java.util.List;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class ProfessorListController extends HttpServlet {
-    ProfessorDao dao = DaoFactory.createProfessorDao(DB2);
+    final ProfessorDao dao = DaoFactory.createProfessorDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {

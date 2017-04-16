@@ -7,29 +7,36 @@
     <title>Professor</title>
 </head>
 <body>
-<a href="professors">Back</a>
-    <form action="professor" method="post">
+<a href="<c:url value="/professor/list"/>">Back</a>
+    <form action="<c:url value="/professor/create"/>" method="post">
         <div>
-            <label>First name</label>
+            <label>First name
             <input name="firstName" value="${professor.firstName}">
+            </label>
         </div>
         <div>
-            <label>Secong name</label>
+            <label>Second name
             <input name="secondName" value="${professor.secondName}">
+            </label>
         </div>
         <div>
-            <label>Father name</label>
+            <label>Father name
             <input name="fatherName" value="${professor.fatherName}">
+            </label>
         </div>
         <div>
-            <label>Birth date</label>
+            <label>Birth date
             <input name="birthDate" value="${professor.birthDate}" type="date">
+            </label>
         </div>
         <div>
-            <label>Average mark</label>
+            <label>Average mark
             <input name="avgMark" value="${professor.avgMark}">
+            </label>
         </div>
-        <input name="id" value="${professor.id}" hidden>
+        <label>
+            <input name="id" value="${professor.id}" hidden>
+        </label>
         <input type="submit">
     </form>
 </body>

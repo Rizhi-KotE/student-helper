@@ -17,7 +17,7 @@ import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class ProfessorCreateController extends HttpServlet {
 
-    ProfessorDao dao = DaoFactory.createProfessorDao(DB2);
+    final ProfessorDao dao = DaoFactory.createProfessorDao(DB2);
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

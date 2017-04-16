@@ -1,6 +1,5 @@
 package sh.dao.DB2Dao;
 
-import org.apache.tomcat.util.security.MD5Encoder;
 import sh.dao.Collector;
 import sh.dao.Exception.DAOException;
 import sh.dao.UserDao;
@@ -22,7 +21,7 @@ public class DB2UserDao implements UserDao {
     private static final String UPDATE = "UPDATE users SET 'user'=?, password=?, role=? WHERE 'user'=?;";
     private static final String SELECT_BY_USER_PASSWORD = "SELECT * FROM users WHERE user=? and password=?";
     private final DB2JDBCTemplate<User> template;
-    private Collector<User> collector = new Collector<User>() {
+    private final Collector<User> collector = new Collector<User>() {
         @Override
         public User collect(ResultSet rs) throws SQLException {
             User user = new User();
@@ -39,7 +38,7 @@ public class DB2UserDao implements UserDao {
     public User getByUsernameAndPassword(String id, String password) throws DAOException {
         List<User> result = template.executeSelect(SELECT_BY_USER_PASSWORD, new Object[]{id, password}, collector);
         if (result.size() == 1) return result.get(0);
-        else throw new DAOException();
+        else throw new DAOException("no such entity");
     }
 
     @Override
@@ -57,7 +56,7 @@ public class DB2UserDao implements UserDao {
     @Override
     public int remove(String id) throws DAOException {
         if (template.executeUpdate(DELETE_BY_USER, new Object[]{id}) == 1) return 1;
-        else throw new DAOException(format("incorect remove study %s", id));
+        else throw new DAOException(format("incorrect remove study %s", id));
 
     }
 

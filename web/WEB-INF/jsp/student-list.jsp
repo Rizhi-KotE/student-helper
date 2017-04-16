@@ -19,7 +19,7 @@
 <ul class="students-list">
 
     <c:forEach var="student" items="${students}">
-        <td><a href="<c:url value="/student/read?id=${student.id}"/>">>${student.id}</a></td>
+        <a href="<c:url value="/student/read?id=${student.id}"/>">${student.id}</a>
     </c:forEach>
 </ul>
 <a href="choose-action">Back</a>

@@ -14,7 +14,7 @@ import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class GroupRemoveController extends HttpServlet {
 
-    GroupDao dao = DaoFactory.createGroupDao(DB2);
+    final GroupDao dao = DaoFactory.createGroupDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String groupNumber = request.getParameter("groupNumber");

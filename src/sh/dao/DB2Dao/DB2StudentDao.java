@@ -51,7 +51,7 @@ public class DB2StudentDao implements StudentDao {
     @Override
     public int remove(Long id) throws DAOException {
         if (template.executeUpdate(DELETE_BY_ID, new Object[]{id}) == 1) return 1;
-        else throw new DAOException(format("incorect remove student %s", id));
+        else throw new DAOException(format("incorrect remove student %s", id));
     }
 
     @Override

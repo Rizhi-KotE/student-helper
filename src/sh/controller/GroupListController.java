@@ -16,7 +16,7 @@ import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class GroupListController extends HttpServlet {
 
-    private GroupDao dao = DaoFactory.createGroupDao(DB2);
+    private final GroupDao dao = DaoFactory.createGroupDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {

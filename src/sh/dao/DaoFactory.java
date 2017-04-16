@@ -29,6 +29,6 @@ public class DaoFactory {
     }
 
     public enum DaoType {
-        DB2;
+        DB2
     }
 }

@@ -3,7 +3,7 @@ create table groups
 	group_number int not null
 		primary key,
 	avg_mark double not null,
-	constraint groups_group_number_uindex
+	constraint groups_group_number_index
 		unique (group_number)
 )
 ;
@@ -18,7 +18,7 @@ create table marks
 	professor_id bigint not null,
 	mark int not null,
 	comments varchar(256) not null,
-	constraint marks_id_uindex
+	constraint marks_id_index
 		unique (id)
 )
 ;
@@ -44,7 +44,7 @@ create table professors
 	father_name varchar(30) not null,
 	birth_date date not null,
 	avg_name double not null,
-	constraint professors_id_uindex
+	constraint professors_id_index
 		unique (id)
 )
 ;
@@ -61,7 +61,7 @@ create table students
 	first_name varchar(30) not null,
 	second_name varchar(30) not null,
 	group_number int not null,
-	constraint students_id_uindex
+	constraint students_id_index
 		unique (id),
 	constraint students_groups_group_number_fk
 		foreign key (group_number) references groups (group_number)
@@ -85,7 +85,7 @@ create table studies
 	hours double not null,
 	professor_id bigint not null,
 	avg_mark double not null,
-	constraint studies_id_uindex
+	constraint studies_id_index
 		unique (id),
 	constraint studies_professors_id_fk
 		foreign key (professor_id) references professors (id)

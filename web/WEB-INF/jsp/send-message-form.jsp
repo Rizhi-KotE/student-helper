@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +9,12 @@
 <h1>Send form</h1>
 <form class="send-message-form">
   <div>
-    <label style="display: block">Text</label>
+    <label style="display: block">Text
     <textarea style="display: block"></textarea>
+    </label>
   </div>
   <div>
-    <a href="choose-action.html">Back</a>
+    <a href="<c:url value="/choose-action"/>">Back</a>
     <input type="submit">
   </div>
 </form>

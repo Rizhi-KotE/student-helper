@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,17 +8,17 @@
 <body>
 <h1>Choose action</h1>
 <div class="send-message">
-  <a href="send-message-form"><button>Send message</button></a>
-  <a href="read-message-form"><button>Read message</button></a>
+  <a href="<c:url value="/message/send"/>"><button>Send message</button></a>
+  <a href="<c:url value="/message/list"/>"><button>Read message</button></a>
 </div>
 
 <ul class="action-list">
-  <li><a href="groups">Groups</a></li>
-  <li><a href="students">Students</a></li>
-  <li><a href="professors">Professors</a></li>
-  <li><a href="marks">Marks</a></li>
-  <li><a href="studies">Studies</a></li>
-  <li><a href="users">Users</a></li>
+  <li><a href="<c:url value="/group/list"/>">Groups</a></li>
+  <li><a href="<c:url value="/student/list"/>">Students</a></li>
+  <li><a href="<c:url value="/professor/list"/>">Professors</a></li>
+  <li><a href="<c:url value="/mark/list"/>">Marks</a></li>
+  <li><a href="<c:url value="/study/list"/>">Studies</a></li>
+  <li><a href="<c:url value="/user/list"/>">Users</a></li>
 </ul>
 
 </body>

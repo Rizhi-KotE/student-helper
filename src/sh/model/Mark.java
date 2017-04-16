@@ -23,7 +23,7 @@ public class Mark {
         mark.setId(parseLong(request.getParameter("id")));
         mark.setStudyId(parseLong(request.getParameter("study_id")));
         mark.setStudentId(parseLong(request.getParameter("student_id")));
-        Date date = null;
+        Date date;
         try {
             String birth = request.getParameter("birthDate");
             date = new Date(new SimpleDateFormat("yyyy-MM-dd").parse(birth).getTime());

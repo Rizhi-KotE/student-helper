@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,6 @@
     <div><span>Принятое сообщение</span></div>
   </li>
 </ul>
-<a href="choose-action.html">Back</a>
+<a href="<c:url value="/choose-action"/>">Back</a>
 </body>
 </html>

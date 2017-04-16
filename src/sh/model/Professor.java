@@ -68,7 +68,7 @@ public class Professor {
 
     public static Professor parseRequest(HttpServletRequest request) throws ServletException {
         Professor professor = new Professor();
-        Date birthDate = null;
+        Date birthDate;
         try {
             String birth = request.getParameter("birthDate");
             java.util.Date parse = new SimpleDateFormat("yyyy-MM-dd").parse(birth);

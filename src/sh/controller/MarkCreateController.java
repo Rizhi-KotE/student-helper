@@ -11,12 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static java.lang.Long.parseLong;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class MarkCreateController extends HttpServlet {
 
-    MarksDao dao = DaoFactory.createMarksDao(DB2);
+    final MarksDao dao = DaoFactory.createMarksDao(DB2);
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Mark mark = Mark.parseRequest(request);

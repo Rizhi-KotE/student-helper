@@ -7,24 +7,23 @@
     <title>Groups</title>
 </head>
 <body>
-<a href="groups">Back</a>
-<table>
-    <tr>
-        <th>Group number</th>
-        <th>Average mark</th>
-    </tr>
-    <form action="group" method="post">
+<a href="<c:url value="/group/list"/>">Back</a>
+    <form action="<c:url value="/group/create"/>" method="post">
         <div>
-            <label>Group number</label>
-            <input name="groupNumber" value="${group.groupNumber}">
+            <label>
+                Group number
+                <input name="groupNumber" value="${group.groupNumber}">
+            </label>
         </div>
         <div>
-            <label>Average mark</label>
-            <input name="avgMark" value="${group.avgMark}">
+            <label>Average mark
+                <input name="avgMark" value="${group.avgMark}">
+            </label>
         </div>
-        <input name="id" value="${group.id}" hidden>
+        <label>
+            <input name="oldNumber" value="${group.groupNumber}" hidden>
+        </label>
         <input type="submit">
     </form>
-</table>
 </body>
 </html>

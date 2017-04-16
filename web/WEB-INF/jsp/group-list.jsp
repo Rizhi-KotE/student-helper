@@ -7,7 +7,7 @@
 </head>
 <body>
 <a href="choose-action">Back</a>
-<button><<a href="group">Add</a></button>
+<button><a href="<c:url value="/group/read"/>">Add</a></button>
 <table>
     <tr>
         <th>Group number</th>

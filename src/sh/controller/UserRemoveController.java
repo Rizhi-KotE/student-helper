@@ -15,7 +15,7 @@ import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class UserRemoveController extends HttpServlet {
 
-    UserDao dao = DaoFactory.createUserDao(DB2);
+    final UserDao dao = DaoFactory.createUserDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String user = request.getParameter("user");

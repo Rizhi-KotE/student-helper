@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static java.lang.Long.parseLong;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class UserCreateController extends HttpServlet {

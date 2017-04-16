@@ -3,6 +3,7 @@ package sh.dao.DB2Dao;
 import sh.dao.Collector;
 import sh.dao.Exception.DAOException;
 
+import javax.naming.NameAlreadyBoundException;
 import javax.naming.NamingException;
 import java.sql.*;
 import java.util.ArrayList;

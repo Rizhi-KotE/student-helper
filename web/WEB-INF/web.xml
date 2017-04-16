@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>AuthServlet</servlet-name>
-        <servlet-class>sh.controller.AuthentificationController</servlet-class>
+        <servlet-class>sh.controller.AuthenticationController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AuthServlet</servlet-name>
@@ -219,6 +219,7 @@
         <servlet-name>GroupListController</servlet-name>
         <url-pattern>/group/list</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>ProfessorCreateController</servlet-name>
         <servlet-class>sh.controller.ProfessorCreateController</servlet-class>
@@ -247,6 +248,22 @@
         <servlet-name>ProfessorListController</servlet-name>
         <servlet-class>sh.controller.ProfessorRemoveController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SendMessage</servlet-name>
+        <servlet-class>sh.controller.SendMessage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReadMessagesController</servlet-name>
+        <servlet-class>sh.controller.ReadMessagesController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReadMessagesController</servlet-name>
+        <url-pattern>/message/list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SendMessage</servlet-name>
+        <url-pattern>/message/send</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProfessorListController</servlet-name>
         <url-pattern>/professor/list</url-pattern>

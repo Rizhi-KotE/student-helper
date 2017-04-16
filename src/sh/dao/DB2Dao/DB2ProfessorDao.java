@@ -53,7 +53,7 @@ public class DB2ProfessorDao implements ProfessorDao {
     @Override
     public int remove(Long id) throws DAOException {
         if (template.executeUpdate(DELETE_BY_ID, new Object[]{id}) == 1) return 1;
-        else throw new DAOException(format("incorect remove professor %s", id));
+        else throw new DAOException(format("incorrect remove professor %s", id));
     }
 
     @Override

@@ -17,7 +17,7 @@ import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class MarkReadController extends HttpServlet {
 
-    MarksDao dao = DaoFactory.createMarksDao(DB2);
+    final MarksDao dao = DaoFactory.createMarksDao(DB2);
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String id = request.getParameter("id");

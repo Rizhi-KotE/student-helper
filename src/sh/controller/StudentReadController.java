@@ -23,8 +23,7 @@ public class StudentReadController extends HttpServlet {
         try {
             String id = request.getParameter("id");
             if (id != null) {
-                Student student = null;
-                student = dao.findOne(parseLong(id));
+                Student student = dao.findOne(parseLong(id));
                 if (student == null) {
                     request.setAttribute("student", new Student());
                     request.getRequestDispatcher("resource-not-found.html").forward(request, response);

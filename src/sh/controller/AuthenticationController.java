@@ -15,7 +15,7 @@ import java.io.IOException;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
 
-public class AuthentificationController extends HttpServlet {
+public class AuthenticationController extends HttpServlet {
 
     private final UserDao dao = DaoFactory.createUserDao(DB2);
 
