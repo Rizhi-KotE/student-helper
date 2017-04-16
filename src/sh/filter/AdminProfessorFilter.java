@@ -10,7 +10,7 @@ import java.io.IOException;
 import static sh.model.Role.ADMIN;
 import static sh.model.Role.PROFESSOR;
 
-public class ReadCreateAdminProfessorFilter implements Filter {
+public class AdminProfessorFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
 
     }

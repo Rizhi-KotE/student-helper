@@ -2,8 +2,9 @@ package sh.controller;
 
 import sh.dao.DaoFactory;
 import sh.dao.Exception.DAOException;
-import sh.dao.MarksDao;
-import sh.model.Mark;
+import sh.dao.StudentDao;
+import sh.dao.UserDao;
+import sh.model.Student;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,22 +15,21 @@ import java.io.IOException;
 import static java.lang.Long.parseLong;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
-public class MarkCreateController extends HttpServlet {
+public class UserCreateController extends HttpServlet {
 
-    MarksDao dao = DaoFactory.createMarksDao(DB2);
+    private final UserDao dao = DaoFactory.createUserDao(DB2);
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Mark mark = Mark.parseRequest(request);
+        Student student = Student.parseRequest(request);
+        long id = parseLong(request.getParameter("oldId"));
         try {
-            //marks cannot be modified
-            mark = dao.saveOrUpdate(0L, mark);
+            dao.saveOrUpdate(id, student);
             request.setAttribute("message", "success");
         } catch (DAOException e) {
             request.setAttribute("message", "fail");
         }
-        request.setAttribute("message", "All right");
-        request.setAttribute("mark", mark);
+        request.setAttribute("student", student);
         request.setAttribute("action", "edit");
-        request.getRequestDispatcher("WEB-INF/jsp/mark-form.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/jsp/student-form.jsp").forward(request, response);
     }
 }

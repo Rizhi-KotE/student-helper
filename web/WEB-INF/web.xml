@@ -14,150 +14,201 @@
         <filter-class>sh.filter.AuthFilter</filter-class>
     </filter>
     <filter>
-        <filter-name>AdminEditFilter</filter-name>
+        <filter-name>AdminFilter</filter-name>
         <filter-class>sh.filter.AdminEditFilter</filter-class>
     </filter>
     <filter>
-        <filter-name>AdminReadFilter</filter-name>
-        <filter-class>sh.filter.AdminReadFilter</filter-class>
-    </filter>
-    <filter>
-        <filter-name>ReadCreateAdminProfessorFilter</filter-name>
-        <filter-class>sh.filter.ReadCreateAdminProfessorFilter</filter-class>
+        <filter-name>AdminProfessorFilter</filter-name>
+        <filter-class>sh.filter.AdminProfessorFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>ReadCreateAdminProfessorFilter</filter-name>
-        <servlet-name>MarkController</servlet-name>
+        <filter-name>AdminProfessorFilter</filter-name>
+        <servlet-name>MarkCreateController</servlet-name>
     </filter-mapping>
     <filter-mapping>
-        <filter-name>AdminReadFilter</filter-name>
-        <servlet-name>UsersListController</servlet-name>
+        <filter-name>AdminFilter</filter-name>
+        <servlet-name>ULi</servlet-name>
         <servlet-name>UserController</servlet-name>
+        <servlet-name>GroupCreateController</servlet-name>
+        <servlet-name>GroupRemoveController</servlet-name>
+        <servlet-name>StudentCreateController</servlet-name>
+        <servlet-name>StudentRemoveController</servlet-name>
+        <servlet-name>ProfessorCreateController</servlet-name>
+        <servlet-name>ProfessorRemoveController</servlet-name>
+        <servlet-name>StudyCreateController</servlet-name>
+        <servlet-name>StudyRemoveController</servlet-name>
     </filter-mapping>
-    <filter-mapping>
-        <filter-name>AdminEditFilter</filter-name>
-        <servlet-name>GroupController</servlet-name>
-        <servlet-name>StudentFormController</servlet-name>
-        <servlet-name>ProfessorFormServlet</servlet-name>
-        <servlet-name>StudyController</servlet-name>
-        <servlet-name>UserController</servlet-name>
-    </filter-mapping>
-
-    <servlet>
-        <servlet-name>StudentsController</servlet-name>
-        <servlet-class>sh.controller.StudentsController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>StudentsController</servlet-name>
-        <url-pattern>/students</url-pattern>
-    </servlet-mapping>
-
+    
     <servlet>
         <servlet-name>ChooseActionController</servlet-name>
         <servlet-class>sh.controller.ChooseActionController</servlet-class>
     </servlet>
-
-    <servlet>
-        <servlet-name>StudentFormController</servlet-name>
-        <servlet-class>sh.controller.StudentFormController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ProfessorFormServlet</servlet-name>
-        <servlet-class>sh.controller.ProfessorFormServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ProfessorsController</servlet-name>
-        <servlet-class>sh.controller.ProfessorsController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>GroupController</servlet-name>
-        <servlet-class>sh.controller.GroupController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>GroupListController</servlet-name>
-        <servlet-class>sh.controller.GroupListController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>MarkController</servlet-name>
-        <servlet-class>sh.controller.MarkController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>MarkListController</servlet-name>
-        <servlet-class>sh.controller.MarkListController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>StudyController</servlet-name>
-        <servlet-class>sh.controller.StudyController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>StudyListController</servlet-name>
-        <servlet-class>StudyListController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UsersListController</servlet-name>
-        <servlet-class>UsersController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UserController</servlet-name>
-        <servlet-class>UserController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UserController</servlet-name>
-        <url-pattern>/user</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UsersListController</servlet-name>
-        <url-pattern>/users</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>StudyListController</servlet-name>
-        <url-pattern>/studies</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>StudyController</servlet-name>
-        <url-pattern>/study</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>MarkListController</servlet-name>
-        <url-pattern>/marks</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>MarkController</servlet-name>
-        <url-pattern>/mark</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GroupListController</servlet-name>
-        <url-pattern>/groups</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GroupController</servlet-name>
-        <url-pattern>/group</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ProfessorsController</servlet-name>
-        <url-pattern>/professors</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ProfessorFormServlet</servlet-name>
-        <url-pattern>/professor</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>StudentFormController</servlet-name>
-        <url-pattern>/student</url-pattern>
-    </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>ChooseActionController</servlet-name>
-        <url-pattern>/choose-action</url-pattern>
+        <url-pattern>/choose_action</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>StudentCreateController</servlet-name>
+        <servlet-class>sh.controller.StudentCreateController</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>AuthServlet</servlet-name>
-        <url-pattern>/login</url-pattern>
+        <servlet-name>StudentCreateController</servlet-name>
+        <url-pattern>/student/create</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>StudentReadController</servlet-name>
+        <servlet-class>sh.controller.StudentReadController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentReadController</servlet-name>
+        <url-pattern>/student/read</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>StudentRemoveController</servlet-name>
+        <servlet-class>sh.controller.StudentRemoveController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentRemoveController</servlet-name>
+        <url-pattern>/student/remove</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>StudentListController</servlet-name>
+        <servlet-class>sh.controller.StudentRemoveController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentListController</servlet-name>
+        <url-pattern>/student/list</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>MarkCreateController</servlet-name>
+        <servlet-class>sh.controller.MarkCreateController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MarkCreateController</servlet-name>
+        <url-pattern>/mark/create</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>MarkReadController</servlet-name>
+        <servlet-class>sh.controller.MarkReadController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MarkReadController</servlet-name>
+        <url-pattern>/mark/read</url-pattern>
+    </servlet-mapping>
+    <!--<servlet>-->
+        <!--<servlet-name>MarkRemoveController</servlet-name>-->
+        <!--<servlet-class>sh.controller.MarkRemoveController</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>MarkRemoveController</servlet-name>-->
+        <!--<url-pattern>/mark/remove</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <servlet>
+        <servlet-name>MarkListController</servlet-name>
+        <servlet-class>sh.controller.MarkRemoveController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MarkListController</servlet-name>
+        <url-pattern>/mark/list</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>StudyCreateController</servlet-name>
+        <servlet-class>sh.controller.StudyCreateController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudyCreateController</servlet-name>
+        <url-pattern>/study/create</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>StudyReadController</servlet-name>
+        <servlet-class>sh.controller.StudyReadController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudyReadController</servlet-name>
+        <url-pattern>/study/read</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>StudyRemoveController</servlet-name>
+        <servlet-class>sh.controller.StudyRemoveController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudyRemoveController</servlet-name>
+        <url-pattern>/study/remove</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>StudyListController</servlet-name>
+        <servlet-class>sh.controller.StudyRemoveController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudyListController</servlet-name>
+        <url-pattern>/study/list</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GroupCreateController</servlet-name>
+        <servlet-class>sh.controller.GroupCreateController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GroupCreateController</servlet-name>
+        <url-pattern>/group/create</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GroupReadController</servlet-name>
+        <servlet-class>sh.controller.GroupReadController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GroupReadController</servlet-name>
+        <url-pattern>/group/read</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GroupRemoveController</servlet-name>
+        <servlet-class>sh.controller.GroupRemoveController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GroupRemoveController</servlet-name>
+        <url-pattern>/group/remove</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GroupListController</servlet-name>
+        <servlet-class>sh.controller.GroupRemoveController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GroupListController</servlet-name>
+        <url-pattern>/group/list</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ProfessorCreateController</servlet-name>
+        <servlet-class>sh.controller.ProfessorCreateController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfessorCreateController</servlet-name>
+        <url-pattern>/professor/create</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ProfessorReadController</servlet-name>
+        <servlet-class>sh.controller.ProfessorReadController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfessorReadController</servlet-name>
+        <url-pattern>/professor/read</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ProfessorRemoveController</servlet-name>
+        <servlet-class>sh.controller.ProfessorRemoveController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfessorRemoveController</servlet-name>
+        <url-pattern>/professor/remove</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ProfessorListController</servlet-name>
+        <servlet-class>sh.controller.ProfessorRemoveController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfessorListController</servlet-name>
+        <url-pattern>/professor/list</url-pattern>
+    </servlet-mapping>
+    
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>
         <url-pattern>/*</url-pattern>
