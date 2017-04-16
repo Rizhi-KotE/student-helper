@@ -1,5 +1,3 @@
-<%@ page import="sh.model.Student" %>
-<%@ page import="java.util.List" %>
 <%@ page import="static java.lang.String.format" %>
 <%@ taglib prefix="c"
            uri="http://java.sun.com/jsp/jstl/core" %>
@@ -12,7 +10,8 @@
 </head>
 <body>
 <h1>Students list</h1>
-<a href="student">
+
+<a href="<c:url value='student/read'/>">
     <button>Add</button>
 </a>
 
@@ -20,7 +19,7 @@
 <ul class="students-list">
 
     <c:forEach var="student" items="${students}">
-        <li><a href="<c:url value="student?id=${student.id}"/>" >${student.firstName}</a></li>
+        <td><a href="<c:url value="/student/read?id=${student.id}"/>">>${student.id}</a></td>
     </c:forEach>
 </ul>
 <a href="choose-action">Back</a>

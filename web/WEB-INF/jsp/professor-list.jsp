@@ -6,8 +6,8 @@
   <title>Professors</title>
 </head>
 <body>
-<a href="choose-action">Back</a>
-<button><a href="professor">Add</a></button>
+<a href="<c:url value="/choose-action"/>">Back</a>
+<button><a href="<c:url value="/professor/read"/>">Add</a></button>
 <table>
   <tr>
     <th>First name</th>
@@ -15,9 +15,10 @@
     <th>Father name</th>
   </tr>
   <%--@elvariable id="professor" type="sh.model.Professor"--%>
+  <%--@elvariable id="professors" type="java.util.List<Professor>"--%>
   <c:forEach items="${professors}" var="professor">
     <tr>
-      <td><a href="<c:url value="/group?id=${professor.id}"/>">${professor.firstName}</a></td>
+      <td><a href="<c:url value="/professor/read?id=${professor.id}"/>">${professor.firstName}</a></td>
       <td>${professor.secondName}</td>
       <td>${professor.fatherName}</td>
     </tr>

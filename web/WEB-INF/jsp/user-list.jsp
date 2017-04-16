@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,6 @@
   <title>Users</title>
 </head>
 <body>
-<a href="choose-action.html">Back</a>
+<a href="<c:url value="/choose-action"/>">Back</a>
 </body>
 </html>

@@ -19,11 +19,11 @@ public class MarkListController extends HttpServlet {
     MarksDao dao = DaoFactory.createMarksDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Mark> marks = null;
+
         try {
-            marks = dao.getList();
+            List<Mark> marks = dao.getList();
             request.setAttribute("marks", marks);
-            request.getRequestDispatcher("WEB-INF/jsp/marks.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/mark-list.jsp").forward(request, response);
         } catch (DAOException e) {
             throw new ServletException(e);
         }

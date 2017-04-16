@@ -16,7 +16,7 @@
     <%--@elvariable id="group" type="sh.model.Group"--%>
     <c:forEach items="${groups}" var="group">
         <tr>
-            <td><<a href="<c:url value="/group?id=${group.id}"/>"></a>>${group.groupNumber}</a></td>
+            <td><a href="<c:url value="/group/read?id=${group.id}"/>">>${group.groupNumber}</a></td>
             <td>${group.avgMark}</td>
         </tr>
     </c:forEach>

@@ -22,7 +22,7 @@ public class GroupListController extends HttpServlet {
         try {
             List<Group> groups = dao.getList();
             request.setAttribute("groups", groups);
-            request.getRequestDispatcher("/WEB-INF/jsp/groups.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/group-list.jsp").forward(request, response);
         } catch (DAOException e) {
             throw new ServletException(e);
         }

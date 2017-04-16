@@ -8,6 +8,18 @@
         <servlet-name>AuthServlet</servlet-name>
         <servlet-class>sh.controller.AuthentificationController</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>AuthServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ChooseActionController</servlet-name>
+        <servlet-class>sh.controller.ChooseActionController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StudentCreateController</servlet-name>
+        <servlet-class>sh.controller.StudentCreateController</servlet-class>
+    </servlet>
 
     <filter>
         <filter-name>AuthFilter</filter-name>
@@ -27,31 +39,30 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
-        <servlet-name>ULi</servlet-name>
-        <servlet-name>UserController</servlet-name>
+        <servlet-name>UserCreateController</servlet-name>
+        <servlet-name>UserListController</servlet-name>
+        <servlet-name>UserReadController</servlet-name>
+        <servlet-name>UserRemoveController</servlet-name>
+
         <servlet-name>GroupCreateController</servlet-name>
         <servlet-name>GroupRemoveController</servlet-name>
+
         <servlet-name>StudentCreateController</servlet-name>
         <servlet-name>StudentRemoveController</servlet-name>
+
         <servlet-name>ProfessorCreateController</servlet-name>
         <servlet-name>ProfessorRemoveController</servlet-name>
+
         <servlet-name>StudyCreateController</servlet-name>
         <servlet-name>StudyRemoveController</servlet-name>
     </filter-mapping>
-    
-    <servlet>
-        <servlet-name>ChooseActionController</servlet-name>
-        <servlet-class>sh.controller.ChooseActionController</servlet-class>
-    </servlet>
+
     <servlet-mapping>
         <servlet-name>ChooseActionController</servlet-name>
-        <url-pattern>/choose_action</url-pattern>
+        <url-pattern>/choose-action</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>StudentCreateController</servlet-name>
-        <servlet-class>sh.controller.StudentCreateController</servlet-class>
-    </servlet>
+
     <servlet-mapping>
         <servlet-name>StudentCreateController</servlet-name>
         <url-pattern>/student/create</url-pattern>
@@ -81,6 +92,38 @@
         <url-pattern>/student/list</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>UserCreateController</servlet-name>
+        <servlet-class>sh.controller.UserCreateController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserCreateController</servlet-name>
+        <url-pattern>/user/create</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UserReadController</servlet-name>
+        <servlet-class>sh.controller.UserReadController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserReadController</servlet-name>
+        <url-pattern>/user/read</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UserRemoveController</servlet-name>
+        <servlet-class>sh.controller.UserRemoveController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserRemoveController</servlet-name>
+        <url-pattern>/user/remove</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>UserListController</servlet-name>
+        <servlet-class>sh.controller.UserRemoveController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserListController</servlet-name>
+        <url-pattern>/user/list</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>MarkCreateController</servlet-name>
         <servlet-class>sh.controller.MarkCreateController</servlet-class>
     </servlet>
@@ -97,12 +140,12 @@
         <url-pattern>/mark/read</url-pattern>
     </servlet-mapping>
     <!--<servlet>-->
-        <!--<servlet-name>MarkRemoveController</servlet-name>-->
-        <!--<servlet-class>sh.controller.MarkRemoveController</servlet-class>-->
+    <!--<servlet-name>MarkRemoveController</servlet-name>-->
+    <!--<servlet-class>sh.controller.MarkRemoveController</servlet-class>-->
     <!--</servlet>-->
     <!--<servlet-mapping>-->
-        <!--<servlet-name>MarkRemoveController</servlet-name>-->
-        <!--<url-pattern>/mark/remove</url-pattern>-->
+    <!--<servlet-name>MarkRemoveController</servlet-name>-->
+    <!--<url-pattern>/mark/remove</url-pattern>-->
     <!--</servlet-mapping>-->
     <servlet>
         <servlet-name>MarkListController</servlet-name>
@@ -208,7 +251,7 @@
         <servlet-name>ProfessorListController</servlet-name>
         <url-pattern>/professor/list</url-pattern>
     </servlet-mapping>
-    
+
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>
         <url-pattern>/*</url-pattern>

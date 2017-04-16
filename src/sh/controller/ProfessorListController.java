@@ -18,11 +18,10 @@ public class ProfessorListController extends HttpServlet {
     ProfessorDao dao = DaoFactory.createProfessorDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Professor> professors = null;
         try {
-            professors = dao.getList();
+            List<Professor>    professors = dao.getList();
             request.setAttribute("professors", professors);
-            request.getRequestDispatcher("WEB-INF/jsp/professors.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/jsp/professor-list.jsp").forward(request, response);
         } catch (DAOException e) {
             throw new ServletException(e);
         }

@@ -26,7 +26,6 @@ public class AuthentificationController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
         User user = getUser(username, password);
         if (user != null) {
             request.getSession().setAttribute("user", user);
@@ -41,7 +40,8 @@ public class AuthentificationController extends HttpServlet {
         try {
             return dao.getByUsernameAndPassword(username, password);
         } catch (DAOException e) {
-            throw new SecurityException(e);
+            e.printStackTrace();
+            return null;
         }
     }
 }

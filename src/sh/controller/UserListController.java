@@ -3,6 +3,7 @@ package sh.controller;
 import sh.dao.DaoFactory;
 import sh.dao.Exception.DAOException;
 import sh.dao.StudyDao;
+import sh.dao.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,14 +13,14 @@ import java.io.IOException;
 
 import static sh.dao.DaoFactory.DaoType.DB2;
 
-public class StudyListController extends HttpServlet {
+public class UserListController extends HttpServlet {
 
-    private final StudyDao dao = DaoFactory.createStudyDao(DB2);
+    private final UserDao dao = DaoFactory.createUserDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            request.setAttribute("studies", dao.getList());
-            request.getRequestDispatcher("WEB-INF/jsp/study-list.jsp").forward(request, response);
+            request.setAttribute("users", dao.getList());
+            request.getRequestDispatcher("WEB-INF/jsp/user-list.jsp").forward(request, response);
         } catch (DAOException e) {
             throw new ServletException(e);
         }
