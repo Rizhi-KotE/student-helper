@@ -5,6 +5,7 @@ import sh.dao.Exception.DAOException;
 import sh.dao.StudentDao;
 import sh.dao.UserDao;
 import sh.model.Student;
+import sh.model.Study;
 import sh.model.User;
 
 import javax.servlet.ServletException;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static java.lang.Long.parseLong;
+import static java.lang.String.format;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class UserCreateController extends HttpServlet {
@@ -21,16 +24,16 @@ public class UserCreateController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = User.parseRequest(request);
-        String id = request.getParameter("oldId");
+        String oldUser = request.getParameter("oldUser");
+        String message;
         try {
-            dao.saveOrUpdate(id, user);
-            request.setAttribute("message", "success");
+            user = dao.saveOrUpdate(oldUser, user);
+            message = "success";
         } catch (DAOException e) {
             e.printStackTrace();
-            request.setAttribute("message", "fail");
+            message = "fail";
         }
-        request.setAttribute("user", user);
-        request.setAttribute("action", "edit");
-        request.getRequestDispatcher("/WEB-INF/jsp/user-form.jsp").forward(request, response);
+        request.getSession().setAttribute("message", message);
+        response.sendRedirect(format("%s/user/read?user=%s", request.getContextPath(), user.getUser()));
     }
 }

@@ -15,10 +15,10 @@ import static java.lang.String.format;
 public class DB2UserDao implements UserDao {
 
     private static final String SELECT_ALL = "SELECT user, role FROM users;";
-    private static final String SELECT_BY_USER = "SELECT 'user', role FROM users WHERE 'user'=?;";
-    private static final String DELETE_BY_USER = "DELETE FROM users WHERE 'user'=?;";
+    private static final String SELECT_BY_USER = "SELECT user, role FROM users WHERE user=?;";
+    private static final String DELETE_BY_USER = "DELETE FROM users WHERE user=?;";
     private static final String INSERT = "INSERT INTO users(user, password, role) VALUES (?,?,?);";
-    private static final String UPDATE = "UPDATE users SET 'user'=?, password=?, role=? WHERE 'user'=?;";
+    private static final String UPDATE = "UPDATE users SET user=?, password=?, role=? WHERE user=?;";
     private static final String SELECT_BY_USER_PASSWORD = "SELECT * FROM users WHERE user=? and password=?";
     private final DB2JDBCTemplate<User> template;
     private final Collector<User> collector = new Collector<User>() {
@@ -56,24 +56,22 @@ public class DB2UserDao implements UserDao {
     @Override
     public int remove(String id) throws DAOException {
         if (template.executeUpdate(DELETE_BY_USER, new Object[]{id}) == 1) return 1;
-        else throw new DAOException(format("incorrect remove study %s", id));
+        else throw new DAOException(format("incorrect remove user %s", id));
 
     }
 
     @Override
     public User saveOrUpdate(String oldUser, User entity) throws DAOException {
         if ("".equals(oldUser)) {
-            List<Object[]> objects = template.executeAndReturnKey(INSERT,
-                    new Object[]{entity.getUser(), entity.getPassword(), entity.getRole()},
-                    new String[]{"id"});
-            if (objects.size() == 1) {
+            if (template.executeUpdate(INSERT,
+                    new Object[]{entity.getUser(), entity.getPassword(), entity.getRole().toString()}) == 1) {
                 return entity;
             } else {
                 throw new DAOException(format("incorrect save %s", entity));
             }
         } else {
             if (template.executeUpdate(UPDATE,
-                    new Object[]{entity.getUser(), entity.getPassword(), entity.getRole(), oldUser}) == 1) {
+                    new Object[]{entity.getUser(), entity.getPassword(), entity.getRole().toString(), oldUser}) == 1) {
                 return entity;
             } else {
                 throw new DAOException(format("incorrect update %s", entity));

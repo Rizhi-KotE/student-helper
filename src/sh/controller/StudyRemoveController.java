@@ -3,6 +3,8 @@ package sh.controller;
 import sh.dao.DaoFactory;
 import sh.dao.Exception.DAOException;
 import sh.dao.StudentDao;
+import sh.dao.StudyDao;
+import sh.model.Study;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +18,7 @@ import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class StudyRemoveController extends HttpServlet {
 
-    final StudentDao dao = DaoFactory.createStudentDao(DB2);
+    final StudyDao dao = DaoFactory.createStudyDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = parseLong(request.getParameter("id"));

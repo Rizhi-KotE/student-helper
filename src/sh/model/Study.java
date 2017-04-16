@@ -17,8 +17,8 @@ public class Study {
         study.setId(parseLong(request.getParameter("id")));
         study.setName(request.getParameter("name"));
         study.setHours(parseDouble(request.getParameter("hours")));
-        study.setProfessorId(parseLong(request.getParameter("professor_id")));
-        study.setAvgMark(parseDouble(request.getParameter("avg_mark")));
+        study.setProfessorId(parseLong(request.getParameter("professorId")));
+        study.setAvgMark(parseDouble(request.getParameter("avgMark")));
         return  study;
     }
 

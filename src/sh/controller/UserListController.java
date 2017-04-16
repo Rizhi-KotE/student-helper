@@ -18,12 +18,11 @@ public class UserListController extends HttpServlet {
     private final UserDao dao = DaoFactory.createUserDao(DB2);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         try {
             request.setAttribute("users", dao.getList());
             request.getRequestDispatcher("/WEB-INF/jsp/user-list.jsp").forward(request, response);
         } catch (DAOException e) {
-            e.printStackTrace();
             throw new ServletException(e);
-        }
-    }
+        }    }
 }

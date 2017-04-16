@@ -9,8 +9,9 @@ import java.io.IOException;
 
 import static sh.model.Role.ADMIN;
 
-public class AdminReadFilter implements Filter {
-    public void init(FilterConfig config) throws ServletException {
+public class AdminFilter implements Filter {
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
 
     }
 
@@ -28,5 +29,4 @@ public class AdminReadFilter implements Filter {
 
     public void destroy() {
     }
-
 }

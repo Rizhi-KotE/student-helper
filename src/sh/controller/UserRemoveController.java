@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static java.lang.Long.parseLong;
+import static java.lang.String.format;
 import static sh.dao.DaoFactory.DaoType.DB2;
 
 public class UserRemoveController extends HttpServlet {
@@ -21,12 +23,12 @@ public class UserRemoveController extends HttpServlet {
         String user = request.getParameter("user");
         try {
             dao.remove(user);
-            request.setAttribute("message", "success");
-            request.getRequestDispatcher("/user/list").forward(request, response);
+//            request.getSession().setAttribute("message", "success");
+            response.sendRedirect(format("%s/user/list", request.getContextPath()));
         } catch (DAOException e) {
             e.printStackTrace();
             request.setAttribute("message", "fail");
-            request.getRequestDispatcher("/WEB-INF/jsp/user-form.jsp").forward(request, response);
+            request.getRequestDispatcher(format("/user/read?user=%s", user)).forward(request, response);
         }
     }
 }

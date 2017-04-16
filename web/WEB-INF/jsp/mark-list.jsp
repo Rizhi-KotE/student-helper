@@ -24,11 +24,13 @@
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                     </a>
                 </li>
-                <li role="presentation">
-                    <a href="<c:url value="/mark/read"/>">
-                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                    </a>
-                </li>
+                <c:if test="${user.role == 'ADMIN' || user.role=='PROFESSOR'}">
+                    <li role="presentation">
+                        <a href="<c:url value="/mark/read"/>">
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                </c:if>
             </ul>
         </div>
     </nav>

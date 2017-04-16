@@ -2,24 +2,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Choose action</title>
+    <meta charset="UTF-8">
+    <title>Choose action</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/bootstrap.min.css"/>">
 </head>
-<body>
+<body class="container">
 <h1>Choose action</h1>
 <div class="send-message">
-  <a href="<c:url value="/message/send"/>"><button>Send message</button></a>
-  <a href="<c:url value="/message/list"/>"><button>Read message</button></a>
+    <c:if test="${user.role!='ADMIN'}">
+        <a class="btn btn-primary" href="<c:url value="/message/send"/>">
+            Send message
+        </a>
+    </c:if>
+    <c:if test="${user.role=='ADMIN'}">
+        <a class="btn btn-primary" href="<c:url value="/message/list"/>">
+            Read message
+        </a>
+    </c:if>
 </div>
 
-<ul class="action-list">
-  <li><a href="<c:url value="/group/list"/>">Groups</a></li>
-  <li><a href="<c:url value="/student/list"/>">Students</a></li>
-  <li><a href="<c:url value="/professor/list"/>">Professors</a></li>
-  <li><a href="<c:url value="/mark/list"/>">Marks</a></li>
-  <li><a href="<c:url value="/study/list"/>">Studies</a></li>
-  <li><a href="<c:url value="/user/list"/>">Users</a></li>
-</ul>
+<div class="action-list list-group">
+    <a class="list-group-item" href="<c:url value="/group/list"/>">Groups</a>
+    <a class="list-group-item" href="<c:url value="/student/list"/>">Students</a>
+    <a class="list-group-item" href="<c:url value="/professor/list"/>">Professors</a>
+    <a class="list-group-item" href="<c:url value="/mark/list"/>">Marks</a>
+    <a class="list-group-item" href="<c:url value="/study/list"/>">Studies</a>
+    <c:if test="${user.role == 'ADMIN'}">
+        <a class="list-group-item" href="<c:url value="/user/list"/>">Users</a>
+    </c:if>
+</div>
 
 </body>
 </html>

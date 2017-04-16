@@ -61,7 +61,7 @@ public class DB2StudyDao implements StudyDao {
                     new Object[]{entity.getName(), entity.getHours(), entity.getProfessorId(), entity.getAvgMark()},
                     new String[]{"id"});
             if (objects.size() == 1) {
-                entity.setId((Long) objects.get(0)[1]);
+                entity.setId((Long) objects.get(0)[0]);
                 return entity;
             } else {
                 throw new DAOException(format("incorrect save %s", entity));

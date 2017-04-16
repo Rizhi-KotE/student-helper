@@ -152,5 +152,48 @@ public class DB2JDBCTemplate<T> {
         }
     }
 
+    public void callProcedure(String query, Object[] params) throws DAOException {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        try {
+            connection = getConnection();
+            statement = connection.cal;
 
+            for (int i = 0; i < params.length; i++) {
+                statement.setObject(i + 1, params[i]);
+            }
+            statement.executeUpdate();
+            rs = statement.getGeneratedKeys();
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        } catch (NamingException e) {
+            throw new DAOException(e);
+        } catch (ClassNotFoundException e) {
+            throw new DAOException(e);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 }
