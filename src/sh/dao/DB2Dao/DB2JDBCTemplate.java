@@ -61,7 +61,7 @@ public class DB2JDBCTemplate<T> {
 
     private Connection getConnection() throws SQLException, NamingException, ClassNotFoundException {
         Class.forName("com.mysql.jdbc.Driver");
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/student_helper", "root", "1");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/student_helper?useUnicode=true&characterEncoding=utf8", "root", "1");
     }
 
     public int executeUpdate(String query, Object[] params) throws DAOException {
