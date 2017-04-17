@@ -33,6 +33,23 @@
                     </a>
                 </li>
             </c:if>
+            <script>
+                function sendRecalculate() {
+                    var request = new XMLHttpRequest();
+                    request.open('GET', '/recalculate?target=1', false);
+                    request.send(null);
+                    if(request.status==200){
+                        location.reload();
+                    }
+                }
+
+            </script>
+            <li role="presentation">
+                <a onclick="sendRecalculate()">
+                    <span>Recalculate</span>
+                    <%--<span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>--%>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

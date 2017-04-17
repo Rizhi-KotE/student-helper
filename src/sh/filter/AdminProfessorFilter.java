@@ -23,7 +23,7 @@ public class AdminProfessorFilter implements Filter {
         if (user != null && (user.getRole() == ADMIN || user.getRole() == PROFESSOR)) {
             chain.doFilter(req, resp);
         } else {
-            httpRequest.getRequestDispatcher("access-denied").forward(httpRequest, httpResponse);
+            httpRequest.getRequestDispatcher("/WEB-INF/jsp/access-denied.jsp").forward(httpRequest, httpResponse);
         }
     }
 

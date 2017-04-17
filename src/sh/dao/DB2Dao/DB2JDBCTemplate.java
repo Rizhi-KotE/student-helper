@@ -158,13 +158,12 @@ public class DB2JDBCTemplate<T> {
         ResultSet rs = null;
         try {
             connection = getConnection();
-            statement = connection.cal;
+           statement = connection.prepareCall(query);
 
             for (int i = 0; i < params.length; i++) {
                 statement.setObject(i + 1, params[i]);
             }
-            statement.executeUpdate();
-            rs = statement.getGeneratedKeys();
+            statement.execute();
         } catch (SQLException e) {
             throw new DAOException(e);
         } catch (NamingException e) {

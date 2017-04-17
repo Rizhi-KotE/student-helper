@@ -1,6 +1,7 @@
 package sh.controller;
 
 import sh.dao.DB2Dao.DB2JDBCTemplate;
+import sh.dao.Exception.DAOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,16 +17,10 @@ public class RecalculateServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int target = parseInt(request.getParameter("target"));
-        switch (target) {
-            case 1: {
-                break;
-            }
-            case 2: {
-                break;
-            }
-            case 3: {
-                break;
-            }
+        try {
+            template.callProcedure("CALL update_avg_marks(?);", new Object[]{target});
+        } catch (DAOException e) {
+            e.printStackTrace();
         }
     }
 }
