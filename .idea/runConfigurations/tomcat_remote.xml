@@ -1,0 +1,59 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="tomcat-remote" type="TomeeConfiguration" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
+    <option name="LOCAL" value="false" />
+    <deployment />
+    <server-settings>
+      <data>
+        <option name="targets">
+          <list>
+            <WatchedTargetModelImpl>
+              <option name="name" value="CONTEXT_XML" />
+              <option name="transportStagingTarget">
+                <TransportTarget>
+                  <option name="id" value="f748477c-4a2b-4b68-a6e2-0d66e0c11324" />
+                  <id>f748477c-4a2b-4b68-a6e2-0d66e0c11324</id>
+                </TransportTarget>
+              </option>
+              <option name="watchedLocalPath" value="" />
+              <watched-path />
+              <name>CONTEXT_XML</name>
+              <transport-target>
+                <TransportTarget>
+                  <option name="id" value="f748477c-4a2b-4b68-a6e2-0d66e0c11324" />
+                  <id>f748477c-4a2b-4b68-a6e2-0d66e0c11324</id>
+                </TransportTarget>
+              </transport-target>
+            </WatchedTargetModelImpl>
+            <StagingTargetModelImpl>
+              <option name="name" value="STAGING" />
+              <option name="stagingRemotePath" value="" />
+              <option name="transportStagingTarget">
+                <TransportTarget>
+                  <option name="id" value="153d6b52-f036-48ae-b6b0-86100bd651e6" />
+                  <id>153d6b52-f036-48ae-b6b0-86100bd651e6</id>
+                </TransportTarget>
+              </option>
+              <staging-path />
+              <name>STAGING</name>
+              <transport-target>
+                <TransportTarget>
+                  <option name="id" value="153d6b52-f036-48ae-b6b0-86100bd651e6" />
+                  <id>153d6b52-f036-48ae-b6b0-86100bd651e6</id>
+                </TransportTarget>
+              </transport-target>
+            </StagingTargetModelImpl>
+          </list>
+        </option>
+        <option name="transportHostId" />
+        <host-id />
+      </data>
+    </server-settings>
+    <predefined_log_file id="Tomcat" enabled="true" />
+    <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
+    <RunnerSettings RunnerId="Debug">
+      <option name="DEBUG_PORT" value="38691" />
+      <option name="LOCAL" value="false" />
+    </RunnerSettings>
+    <method />
+  </configuration>
+</component>
