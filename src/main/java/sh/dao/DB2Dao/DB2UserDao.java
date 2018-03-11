@@ -15,7 +15,7 @@ import static java.lang.String.format;
 public class DB2UserDao implements UserDao {
 
     private static final String SELECT_ALL = "SELECT username, role FROM users;";
-    private static final String SELECT_BY_USER = "SELECT username, role FROM users WHERE user=?;";
+    private static final String SELECT_BY_USER = "SELECT username, role FROM users WHERE username=?;";
     private static final String DELETE_BY_USER = "DELETE FROM users WHERE user=?;";
     private static final String INSERT = "INSERT INTO users(username, password, role) VALUES (?,?,?);";
     private static final String UPDATE = "UPDATE users SET username=?, password=?, role=? WHERE user=?;";

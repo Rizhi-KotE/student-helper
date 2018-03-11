@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>User</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/src/main/webapp/static/css/bootstrap.min.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/bootstrap.min.css"/>">
 </head>
 <body class="container">
 <nav class="navbar navbar-default">
@@ -18,9 +18,7 @@
                 font-size: 1.5em;
             }
         </style>
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">StudentHelper</a>
-        </div>
+        <c:import url="/WEB-INF/jsp/brand.jsp"/>
         <ul class="nav navbar-nav">
             <li role="presentation">
                 <a href="<c:url value="/user/list"/>">

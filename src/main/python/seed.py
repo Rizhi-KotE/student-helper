@@ -18,7 +18,7 @@ group_numbers = [100000 + x for x in range(10)]
 def gen_group():
     return group_fmt % (rand.choice(group_numbers),rand.randint(2,10)) 
 
-prof_fmt = "insert into professors(first_name, second_name, father_name, birth_date, avg_name) values ('%s', '%s', '%s', '%s', '%s');"
+prof_fmt = "insert into professors(first_name, second_name, father_name, birth_date, avg_mark) values ('%s', '%s', '%s', '%s', '%s');"
 
 def gen_prof():
     return prof_fmt % (

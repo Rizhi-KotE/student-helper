@@ -1,6 +1,6 @@
 CREATE TABLE groups
 (
-  group_number INT PRIMARY KEY,
+  group_number CHARACTER(9) PRIMARY KEY,
   avg_mark     DECIMAL NOT NULL,
   CONSTRAINT groups_group_number_index
   UNIQUE (group_number)
@@ -35,7 +35,7 @@ CREATE TABLE professors
   second_name VARCHAR(30) NOT NULL,
   father_name VARCHAR(30) NOT NULL,
   birth_date  DATE        NOT NULL,
-  avg_name    DECIMAL     NOT NULL,
+  avg_mark    DECIMAL     NOT NULL,
   CONSTRAINT professors_id_index
   UNIQUE (id)
 );
@@ -49,7 +49,7 @@ CREATE TABLE students
   id           SERIAL      NOT NULL  PRIMARY KEY,
   first_name   VARCHAR(30) NOT NULL,
   second_name  VARCHAR(30) NOT NULL,
-  group_number INT         NOT NULL,
+  group_number CHARACTER(9)         NOT NULL,
   CONSTRAINT students_id_index
   UNIQUE (id),
   CONSTRAINT students_groups_group_number_fk

@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Choose action</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/src/main/webapp/static/css/bootstrap.min.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/static/css/bootstrap.min.css"/>">
 </head>
+<c:import url="/WEB-INF/jsp/brand.jsp"/>
 <body class="container">
 <h1>Choose action</h1>
 <div class="send-message">
